@@ -1,0 +1,1274 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        .links line {
+            stroke: #000;
+            stroke-opacity: 0.6;
+        }
+            
+        #wrapper{
+            width: 100%;
+            border: 1px solid black;
+            overflow: hidden;
+        }
+            
+        #Input{
+            width: 800px;
+            float: left;
+            border: 1px solid green;
+        }
+            
+        #Information{
+            border: 1px solid red;
+            overflow: hidden;
+        }
+            
+        #Optimization{
+            border: 1px solid blue;
+        }
+        </style>
+
+        <script type = "text/javascript" src="d3.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.1.js"></script>
+        <script src="numeric-1.2.6.js"></script>
+        <script src="mds.js"></script>
+    </head>
+    <body>
+        
+        <div id="wrapper">
+                        
+        
+            <div id="Input" align="center">
+
+            </div>
+
+            <div id="Information" align="center">
+                <lable id='teacherLable' for='teacherField'>Type in a teacher:</lable>
+                <input id='teacherField' type='text'>
+                <button id='LecturesButton' type='submit'>Lectures</button>
+                <button id='StudentsButton' type='submit'>Students</button>
+                <button id='MWDButton' type='submit'>MWD</button>
+                <button id='AllButton' type='submit'>All</button>
+                <button id='buttonid' type='submit'>Execute</button>
+            <button id='readRes' type='submit'> Read </button>
+                
+            </div>
+
+        </div>
+        
+        <div id="Optimization">
+            
+        </div>
+        
+
+        
+        <script>
+        
+        
+        //window.open('http://localhost:8080/D3/HelloWorld.cgi');
+        alert("file executed");
+        //window.open('file:///C:/Windows/notepad.exe');
+        
+        
+            
+        function zoomed(){
+                d3.select(this).select("g").attr("transform",d3.event.transform);
+                d3.select(this).select("g.links").attr("transform",d3.event.transform);    
+
+            }
+            
+        
+            
+        function buildLinkTeacher(teacher,my_courses,is_teacher){
+            valid_courses = [];
+            my_links = [];
+            for(key in my_courses){
+                //console.log(my_courses[key].teacher);
+                //console.log(teacher);
+                if(is_teacher){
+                    if(my_courses[key].teacher == teacher){
+                        valid_courses.push(my_courses[key].name);
+                    }
+                }
+                else{
+                    for(curricula in my_courses[key].curricula){
+                        //console.log(my_courses[key].curricula[curricula]);
+                        if(my_courses[key].curricula[curricula] == teacher){
+                            valid_courses.push(my_courses[key].name);
+                        }
+                    }
+                }
+            }
+            
+            for(var i = 0; i < valid_courses.length-1; i++){
+                my_links.push({"source" : valid_courses[i], "target" : valid_courses[i+1]});
+            }
+            if(my_links.length == 0){
+                my_links.push({"source" : valid_courses[0], "target" : valid_courses[0]});
+            }
+            
+            return my_links;
+        }
+            
+        var f = "hola.txt";
+        writeTextFile(f,"hey");
+            
+                    
+        function writeTextFile(afilename, output){
+            var txtFile = new File(["hello"],afilename,{type: "text/plain", lastModified: ""});
+            //var txtFile = new File(afilename);
+            //txtFile.writeln(output);
+            //txtFile.close();
+        }
+            
+        function jsonConcat(o1, o2){ //user53964
+            for(var key in o2){
+                o1[key] = o2[key];
+            }
+            return o1;
+        }
+            
+        function buildAll(my_courses){
+            
+            teacher_list = [];
+            curricula_list = [];
+            my_links_aa = [];
+            holder_links = [];
+            for(key in my_courses){
+                if(teacher_list.indexOf(my_courses[key].teacher) == -1){
+                    teacher_list.push(my_courses[key].teacher);
+                }
+                for(curricula in my_courses[key].curricula){
+                    if(curricula_list.indexOf(my_courses[key].curricula[curricula]) == -1){
+                        curricula_list.push(my_courses[key].curricula[curricula]);
+                    }
+                }
+            }
+            
+            for(teacher in teacher_list){
+                holder_links = buildLinkTeacher(teacher_list[teacher],my_courses,true);
+                for(var i = 0; i < holder_links.length; i++){
+                    my_links_aa.push({"source" : holder_links[i].source, "target" : holder_links[i].target});
+                }
+            }
+            
+            for(curricula in curricula_list){
+                holder_links = buildLinkTeacher(curricula_list[curricula],my_courses,false);    
+                for(var i = 0; i < holder_links.length; i++){
+                    my_links_aa.push({"source" : holder_links[i].source, "target" : holder_links[i].target});
+                }
+            }
+            console.log(my_links_aa);
+            
+            return my_links_aa;
+        }
+		
+        var color = d3.scaleOrdinal(d3.schemeCategory10).domain(d3.range(0,9));
+            
+        var zoom = d3.zoom().scaleExtent([1,10]).on("zoom",zoomed);
+            
+        /*var simulation = d3.forceSimulation()
+        .force("link", d3.forceLink().id("hola"))
+        .force("charge", d3.forceManyBody())
+        .force("center", d3.forceCenter(500,1000)); */
+            
+        var svgContainer_width = 800, svgContainer_height = 800, opti_width = 10000;
+        var svgContainer2_width = 700, svgContainer2_height = 300, opti_height = 20000;
+        
+        var svgContainer = d3.select("#Input").append("svg").attr("width",svgContainer_width).attr("height", svgContainer_height);
+            
+	    var svgContainer_2 = d3.select("#Information").append("svg").attr("width",svgContainer2_width).attr("height", svgContainer2_height);
+
+        var testing = svgContainer_2.append("circle").attr("cx",50).attr("cy",50).attr("r",10);
+        var opti_svg = d3.select("#Optimization").append("svg").attr("width",opti_width).attr("height",opti_height);
+
+        var testing2 = opti_svg.append("circle").attr("cx",50).attr("cy",50).attr("r",10);
+            
+		/*var input_text = d3.select("#Information").html("Type in a teacher: ").append("input").attr("type","text").attr("name","teacher_val");
+			var button = d3.select("#Information").append("input")
+					.attr("type","button")
+					.attr("name","find_teacher")
+					.attr("value","Update")
+					.attr("onclick", "getTeacher(teacher_val.value)");*/
+		
+
+		var my_datas = new Promise(function(resolve,reject){return d3.json("U1.json");});
+		my_datas.then(function(response){console.alert("hola");});
+		
+        d3.json("U1.json", function (error,data){
+            
+            all_courses = calculateCourseNames();
+            all_courses_cap = calculatecourseCap();
+            all_rooms = calculateRoomNames();
+            course_positions = [];
+            var jumps;
+            
+            for(var i = 0; i < all_courses.length; i++){
+                course_positions.push({"x":-1 , "y":-1});
+            }
+			console.log(course_positions);
+            
+            function conversion(c_jumps, c_data){
+                c_converted = []
+				course_positions = [];
+				
+                var c_cont = 0;
+                for(var c_i in c_data){
+                    console.log(c_data[c_i]);
+                    if(c_i == "results"){
+                        console.log("Hard: ", c_data[c_i].hard_score);
+                        console.log("Soft: ", c_data[c_i].soft_score);
+                        /*d3.select("#Optimization").select("#result").append("text")
+                            .attr("x",10)
+                            .attr("y",10)
+                            .attr("font-size", "20px")
+                            .attr("fill", "black")
+                            .text(c_data[c_i].hard_score + c_data[c_i].soft_score);
+                        break;*/
+                    }
+                    for(c_j in c_data[c_i]){
+                        console.log(c_data[c_i][c_j]);
+                        c_x = c_data[c_i][c_j].x*c_jumps + (c_jumps - all_courses_cap[c_cont] - 0)/2;
+                        c_y = c_data[c_i][c_j].y*c_jumps + (c_jumps - all_courses_cap[c_cont] - 0)/2;
+						
+					
+						course_positions.push({"x":c_data[c_i][c_j].y,"y":c_data[c_i][c_j].x});
+                        c_converted.push({"x":c_y,"y":c_x});
+                        c_cont++;
+                    }
+                    
+                    
+                }
+				course_positions.pop(); course_positions.pop();
+				console.log(course_positions);
+                console.log(c_converted);
+                return c_converted;
+            }
+			
+			
+            
+            $(document).ready(function(){
+                
+                    
+                    $('#buttonid').on('click', function(e){
+                        //setTimeout(function(){
+                            var ready_input = generateInput();
+							
+                        e.preventDefault();
+                        $.get('/UCTTP/solver.cgi?'+ready_input);
+                            //}, 5000);
+                    });
+                
+            });
+            
+            d3.select("#readRes").on("click",function(){
+                
+                d3.json("output.json", function(error, position_data){
+                    console.log(position_data);
+                    formatted_pos = conversion(jumps, position_data);
+                    console.log(jumps);
+
+					draw2("All",formatted_pos,opti_svg,opti_width,opti_height, jumps);
+                }
+                       
+                       
+                );
+                /*my_teacher = document.getElementById('teacherField').value;
+                cc = calculate();
+                dd = calculateDistanceAll(cc);
+                pos = calculatePositions(dd);
+                draw2(my_teacher,pos,svgContainer,svgContainer_width, svgContainer_height, 0);*/
+            });
+            
+            d3.select("#LecturesButton").on("click",function(){
+                my_teacher = document.getElementById('teacherField').value;
+                cc = calculate();
+                dd = calculateDistance(cc,"lectures");
+                pos = calculatePositions(dd);
+                draw(my_teacher,pos,svgContainer,svgContainer_width, svgContainer_height, 0);
+            });
+            
+        
+            d3.select("#StudentsButton").on("click",function(){
+                my_teacher = document.getElementById('teacherField').value;
+                cc = calculate();
+                dd = calculateDistance(cc,"students");
+                pos = calculatePositions(dd);
+                draw(my_teacher,pos,svgContainer,svgContainer_width, svgContainer_height, 0);
+            });
+            
+            d3.select("#MWDButton").on("click",function(){
+                my_teacher = document.getElementById('teacherField').value;
+                cc = calculate();
+                dd = calculateDistance(cc,"min_working_days");
+                pos = calculatePositions(dd);
+                draw(my_teacher,pos,svgContainer,svgContainer_width, svgContainer_height, 0);
+            });
+            
+            d3.select("#AllButton").on("click",function(){
+                my_teacher = document.getElementById('teacherField').value;
+                cc = calculate();
+                dd = calculateDistanceAll(cc);
+                pos = calculatePositions(dd);
+                draw(my_teacher,pos,svgContainer,svgContainer_width, svgContainer_height, 0);
+            });
+            
+            function calculatePositions(d_matrix){
+                var positions = numeric.transpose(mds.classic(d_matrix));
+                var linear_scale_x = d3.scaleLinear()
+                                    .domain([d3.min(positions[0]),d3.max(positions[0])])
+                                    .range([0,svgContainer_width-200]);
+                
+                var linear_scale_y = d3.scaleLinear()
+                                    .domain([d3.min(positions[1]),d3.max(positions[1])])
+                                    .range([0,svgContainer_height-200]);
+                
+                var pos_x_y = [];
+                console.log(positions);
+                for(var i = 0; i < positions[0].length; i++){
+                    pos_x_y.push({"x":linear_scale_x(positions[0][i]),"y":linear_scale_y(positions[1][i])});
+                }
+                return pos_x_y;
+            }
+            
+            function getDistanceTwo(course_a, course_b){
+                var distance = 0;
+                for(var attr in course_a){
+                    if(attr == "min_working_days" || attr == "students" || attr == "lectures"){
+                        distance += Math.pow(course_a[attr] - course_b[attr],2);
+                    }
+                }
+                return Math.sqrt(distance);
+            }
+            
+            function calculateDistanceAll(courses){
+                var d_matrix = [];
+                var d_row = [];
+                for(var key_i in courses){
+                    d_row = [];
+                    for(var key_j in courses){
+                        d_row.push(getDistanceTwo(courses[key_i],courses[key_j]));
+                    }
+                    d_matrix.push(d_row);
+                }
+                return d_matrix;
+            }
+            
+            function calculateDistance(courses, attribute){
+                var d_matrix = [];
+                var d_row = [];
+                for(var key_i in courses){
+                    d_row = [];
+                    for(var key_j in courses){
+                        d_row.push( Math.sqrt(Math.pow(courses[key_i][attribute] - courses[key_j][attribute],2)+
+                                        Math.pow(0.01,2)*5));
+                    }
+                    d_matrix.push(d_row);
+                }
+                return d_matrix;
+            }
+            
+                function calculate(){
+                    var courses = [];
+                    for(key in data){
+                        if(key == "courses"){
+                            console.log(data[key]);
+                            /*for(day in data[key].constraints[0]){
+                                console.log(data[key].constraints[0][day]);
+                            }*/
+                            for(var course in data[key]){
+                                courses.push(data[key][course]);
+                            }
+
+
+                        }
+
+                    }
+                    return courses;
+                }
+            
+            function calculateCourseNames(){
+                var courses_names = [];
+                    for(key in data){
+                        if(key == "courses"){
+                            console.log(data[key]);
+                            /*for(day in data[key].constraints[0]){
+                                console.log(data[key].constraints[0][day]);
+                            }*/
+                            for(var course in data[key]){
+                                courses_names.push(data[key][course].name);
+                            }
+
+
+                        }
+
+                    }
+                    return courses_names;
+                }
+            
+            function calculatecourseCap(){
+                var courses_names = [];
+                    for(key in data){
+                        if(key == "courses"){
+                            console.log(data[key]);
+                            /*for(day in data[key].constraints[0]){
+                                console.log(data[key].constraints[0][day]);
+                            }*/
+                            for(var course in data[key]){
+                                courses_names.push(data[key][course].students);
+                            }
+
+
+                        }
+
+                    }
+                    return courses_names;
+                }
+            
+            
+            function calculateRoomNames(){
+                var calculate_rooms = [];
+                for(var room in data.rooms){
+                    calculate_rooms.push(data.rooms[room].name);
+                }
+                return calculate_rooms;
+            }
+            
+            //createSchedule();
+            gg();
+            
+            function createSchedule(){
+                    var total_days = data.university.num_days, total_timeslots = data.university.num_time_slots;
+                    var max_timeslot = total_timeslots * total_days, column;
+                    var my_rooms = [], room_width = 100, room_height = 100;
+                    var max_capacity = 0;
+                    var schedule_group = opti_svg.append("g").attr("id","#schedule");
+                
+                
+                    for(var room in data.rooms){
+                        my_rooms.push(data.rooms[room]);
+                        //console.log(data.rooms[room].capacity);
+                        if(parseInt(data.rooms[room].capacity) > parseInt(max_capacity)){
+                            
+                        
+                            max_capacity = parseInt(data.rooms[room].capacity) ;
+                            console.log(max_capacity);
+                        }
+                    }
+                
+                    room_width = max_capacity; room_height = max_capacity;
+                
+                    var columns = schedule_group.selectAll("g").data(my_rooms).enter().append("g");    
+                    
+                    for(var i = 0; i <  max_timeslot; i++){
+                        columns.append("rect")
+                            .attr("x",function(d,index){return index*room_width;})
+                            .attr("y",function(d,index){return i*room_height;})
+                            .attr("width", room_width)
+                            .attr("height", room_height)
+                            .attr("stroke","green")
+                            .attr("stroke-width",function(d){return 2;})
+                            .attr("fill","brown");
+                        
+                        columns.append("rect")
+                            .attr("x",function(d,index){return index*room_width + (room_width - d.capacity)/2;})
+                            .attr("y",function(d,index){return i*room_height + (room_height - d.capacity)/2;})
+                            .attr("width", function(d){return d.capacity;})
+                            .attr("height", function(d){return d.capacity;})
+                            .attr("stroke","white")
+                            .attr("stroke-width",0)
+                            .attr("fill","white");
+                        
+
+                        
+                    }
+                    return max_capacity;
+            }
+            
+            function gg(){
+                
+                jumps = createSchedule();
+                draw2("All",[],opti_svg,opti_width,opti_height, jumps);
+            }
+                
+            function draw(edges,pos, container, container_width, container_height, jumps){
+                
+            if(container == svgContainer){
+                container.select("g").remove();
+            }
+            var myData = [];
+            var courses = [];
+            var constraints = [];
+            var spec_courses = [];
+            var total_days = data.university.num_days, width = 0, height = 0, total_timeslots = data.university.num_time_slots;
+
+            
+			
+		//var button = svgContainer_2.append("form").html("").append("input");
+			
+            //console.log(data);
+            alert(total_days);
+            for(key in data){
+                if(key == "courses"){
+                    console.log(data[key]);
+                    /*for(day in data[key].constraints[0]){
+                        console.log(data[key].constraints[0][day]);
+                    }*/
+                    for(var course in data[key]){
+                        courses.push(data[key][course]);
+                        constraints.push(data[key][course].constraints);
+                    }
+                    
+                    
+                }
+                
+            }
+                
+            if(pos.length == 0){
+                
+                alert("vacio");
+               for(var i = 0; i < courses.length; i++){
+                    pos.push({"x":0,"y":0});
+               }
+            }
+       
+                
+            for(var i = 0; i < courses.length; i++){
+                courses[i].x = pos[i].x;
+                courses[i].y = pos[i].y;
+                
+            }
+            
+            /*simulation
+                .nodes(courses)
+                .on("tick",ticked);*/
+            
+            var courses_svg = container.append("g").call(zoom);
+            
+            var courses_svg_zoom = courses_svg.append("rect")
+            .attr("x",0)
+            .attr("y",0)
+            .attr("width",container_width)
+            .attr("height",container_height)
+            .attr("fill",function(){
+                if(container == svgContainer) return "white"
+                else return "none";
+            ;});
+            
+            var my_links_bb;
+            if(edges == "All") my_links_bb = buildAll(courses); 
+            else my_links_bb = buildLinkTeacher(edges, courses,true);
+            console.log(my_links_bb);
+            
+            /*simulation
+                .force("link")
+                .link(my_links);*/
+            
+            /*var simulation = d3.forceSimulation()
+            .node(courses)
+            .link(my_links);*/
+            
+            var link_force = d3.forceLink(my_links_bb).id(function(d){return d.name;});
+            
+            var simulation = d3.forceSimulation()
+                .nodes(courses);
+            
+            simulation
+                //.force("charge_force", d3.forceManyBody().strength(-50))
+                //.force("center_force", d3.forceCenter(500,1000))
+                .force("links",link_force.strength(0));
+            
+            simulation.on("tick", ticked);
+            
+            
+            
+            var my_course_group = courses_svg.append("g");
+            
+            var my_course_link_container = courses_svg.append("g");
+            
+            var my_course_link = my_course_link_container
+            .attr("class","links")
+            .selectAll("line")
+            .data(my_links_bb).enter()
+            .append("line")
+            .attr("stroke-width", 2)
+            .attr("stroke","black");
+            
+            var my_course = my_course_group.selectAll("g")
+            .data(courses)
+            .enter()
+            .append("g")
+            .on("mouseover",function(d){
+            console.log(d.name);})
+            .call(d3.drag()
+                  //.subject(Object)
+                  //.subject(dragSubject)
+                  .on("start",dragStarted)
+                  .on("drag",dragged)
+                  .on("end",dragEnd));
+            
+            
+            
+            var my_course_rectangle = my_course.append("rect")
+            /*.attr("x",function(d,i){
+                return 100;
+            })*/
+            //.attr("y",function(d,i){return (i+1)*25;})
+            .attr("width",function(d){return d.students + width;})
+            .attr("height",function(d){return d.students + height;})
+            .attr("fill",function(d){
+                var index = d.min_working_days;
+                console.log(d);
+                return color(index);})
+            .attr("stroke","black")
+            .attr("stroke-width",2)
+            .attr("id",function(d,i){ return i; });
+            
+            var my_course_all = my_course.append("g");
+            
+
+            for(var day = 0; day < total_days; day++){
+                var my_course_day = my_course_all.append("rect")
+                .attr("x", function(d){return day * (width + d.students) / (total_days);})
+                //.attr("y",function(d,i){return (i+1)*25;})
+                .attr("width",function(d){return (width + d.students)/total_days;})
+                .attr("height",function(d){return height + d.students;}).attr("fill","none").attr("stroke","black").attr("stroke-width",2)
+                .attr("id",day);
+                //var my_course_timeslot = my_course_all.append
+            }
+            
+            var my_course_timeslot = my_course_all.selectAll("g")
+            .data(function(d,i){return d.constraints;})
+            .enter()
+            .append("g");
+            
+            var my_course_timeslot_i = my_course_timeslot.append("rect")
+            .attr("x",function(d){
+                var students = d3.select(this).node().parentNode.parentNode.__data__.students;
+                return d.day * (width + students) / total_days;
+                })
+            .attr("y",function(d){
+                //Get parent's data id
+                //i = my_course.data().indexOf(d3.select(this).node().parentNode.parentNode.__data__);
+                var students = d3.select(this).node().parentNode.parentNode.__data__.students;
+                return d.timeslot * (height + students) / total_timeslots;// + (i+1)*25;
+            })
+            .attr("width", function(d){
+                var students = d3.select(this).node().parentNode.parentNode.__data__.students;
+                return (width + students)/total_days;
+            })
+            .attr("height",function(d){
+                var students = d3.select(this).node().parentNode.parentNode.__data__.students;
+                return (height + students)/total_timeslots;
+            })
+            .attr("stroke","black")
+            .attr("stroke-width",1)
+            .attr("fill","red");
+            
+            /*function dragSubject(d){
+                return simulation.find(d3.event.x, d3.event.y);
+            }*/
+                
+            
+            function dragStarted(d){
+                d3.event.sourceEvent.stopPropagation();
+                if(!d3.event.active) {
+					simulation.force("charge_force", d3.forceManyBody().strength(0));
+					simulation.alphaTarget(0.3).restart();
+					
+				}
+                
+                //d3.event.sourceEvent.stopPropagation();
+                
+                /*d.fx = d.x;
+                d.fy = d.y;*/
+                /*console.log(d.x);
+                d3.select(this).attr("transform","translate("+d.x+","+d.y+")");*/
+            }
+            
+            function dragged(d){
+                d3.event.sourceEvent.stopPropagation();
+                             
+                d3.select(this).attr("transform","translate("+ d3.event.x+","+d3.event.y+")");
+                d.x = d3.event.x;
+                d.y = d3.event.y;
+                
+                
+            }
+            
+            function dragEnd(d){
+                d3.event.sourceEvent.stopPropagation();
+                if(!d3.event.active) simulation.alphaTarget(0);
+                //course_positions[d.name] = {"x":d.x, "y":d.y};
+                //console.log(course_positions[d.name]);
+            }
+            
+            console.log(my_course.node());
+            console.log(my_course.node().hasAttributes());
+            
+            function ticked(){
+                var x1, y1, x2, y2;
+                my_course_link
+                    .attr("x1",function(d){return x1 = d.source.x+ (d.source.students + width) / 2;})
+                    .attr("y1",function(d){return y1 = d.source.y+ (d.source.students + height )/2;})
+                    .attr("x2",function(d){return x2 = d.target.x+ (d.target.students + width )/ 2;})
+                    .attr("y2",function(d){return y2 = d.target.y+ (d.target.students + height )/ 2;});
+                if(x1 == x2 && y1 == y2){
+                    my_course_link
+                    .attr("x2",x2+width)
+                    .attr("y2",y2+height);
+                }
+                /*my_course_rectangle
+                    .attr("x",function(d){return d.x = d.x;})
+                    .attr("y",function(d){return d.y = d.y;});*/
+                
+                my_course
+                    .attr("transform", function(d,i){
+                    /*d.x = pos[i].x;
+                    d.y = pos[i].y;*/
+                    return "translate("+d.x+","+d.y+")";});
+                
+                /*d3.select(my_course_all._groups[0][4])
+                    .attr("x",function(d){return d.x;})
+                    .attr("y",function(d){return d.y;});*/
+                //console.log(my_course_all.selectAll("rect"));
+                //console.log(d3.select(my_course_all._groups[0][2]));
+            }
+            
+            /*function getTeacher(my_teacher){
+                //var teacher = document.getElementById('teacherField').value;
+				alert(my_teacher);
+                my_links = buildLinkTeacher(my_teacher, courses);
+                my_course_link.data(my_links).enter();
+            }*/
+			
+			
+
+		my_course.on('click', function(d){
+            if(container == svgContainer || container == opti_svg){
+			selected_x = 10, selected_y = 10, selected_width = 150, selected_height = 100;
+			
+			svgContainer_2.select("circle").remove();
+			svgContainer_2.select("g").remove();
+			selected_course = svgContainer_2.selectAll("g").data([d]).enter().append("g");
+			
+			selected_course_boundary = selected_course.append("rect")
+										.attr("x",selected_x)
+										.attr("y",selected_y)
+										.attr("width",selected_width)
+										.attr("height",selected_height)
+										.attr("fill",function(d){console.log(d);var index = d.min_working_days; return color(index);})
+										.attr("stroke","black")
+										.attr("stroke-width",2);
+			
+			selected_course_days_container = selected_course.append("g");
+			for(var i = 0; i < total_days; i++){
+				selected_course_days = selected_course_days_container.append("rect")
+										.attr("x",selected_x + i * (selected_width / total_days))
+										.attr("y",selected_y)
+										.attr("width",selected_width / total_days)
+										.attr("height",selected_height)
+										.attr("fill","none")
+										.attr("stroke","black")
+										.attr("stroke-width",2);
+			}
+			
+			selected_course_timeslots_container = selected_course_days_container.selectAll("g")
+										.data(function(d){return d.constraints;})
+										.enter()
+										.append("g");
+			
+			selected_course_timeslots = selected_course_timeslots_container.append("rect")
+										.attr("x",function(d){return selected_x + d.day * (selected_width / total_days);})
+										.attr("y",function(d){return selected_y + d.timeslot * (selected_height / total_timeslots);})
+										.attr("width", function(d){return selected_width / total_days;})
+										.attr("height", function(d){return selected_height / total_timeslots;})
+										.attr("fill","red")
+										.attr("stroke","black")
+										.attr("stroke-width",2);
+										
+			selected_course_text_container = selected_course.append("g");
+			
+			index = 0;
+            var items_per_column = 8;
+			for(var attribute in d){
+				
+				selected_course_text = selected_course_text_container.append("text")
+										.attr("x", selected_x + selected_width + 20 + 140 * parseInt(index / items_per_column))
+										.attr("y", selected_y + 20 + 40 * (index % items_per_column))
+										.text(function(d){
+											var description = "";
+											if(attribute == "name") description = "Course: ";
+											else if(attribute == "teacher") description = "Teacher: ";
+											else if(attribute == "lectures") description = "Lectures: ";
+											else if(attribute == "min_working_days") description = "MWD: ";
+											else if(attribute == "students") description = "Students: ";
+											else if(attribute == "curricula") description = "Curricula: ";
+											else if(attribute == "possible_rooms") description = "Possible rooms: ";
+											
+											if(attribute == "curricula" || attribute == "possible_rooms"){
+												for(var a in d[attribute]){
+													description += d[attribute][a] + " ";
+												}
+											}
+											else if(attribute == "name" || attribute == "teacher" || attribute == "lectures" || attribute == "students" || attribute == "min_working_days")
+												description += d[attribute];
+											return description;})
+										.attr("font-size", "20px")
+										.attr("fill","black");
+
+				index++;
+			}
+            }
+		});
+                
+                
+            }
+            
+            function draw2(edges,pos, container, container_width, container_height, jumps){
+            
+                container.select("#opts").remove();
+            
+            var draw2_myData = [];
+            var draw2_courses = [];
+            var draw2_constraints = [];
+            var draw2_spec_courses = [];
+            var draw2_total_days = data.university.num_days, draw2_width = 0, draw2_height = 0, draw2_total_timeslots = data.university.num_time_slots;
+
+            
+			
+		//var button = svgContainer_2.append("form").html("").append("input");
+			
+            //console.log(data);
+            alert(draw2_total_days);
+            for(key in data){
+                if(key == "courses"){
+                    console.log(data[key]);
+                    /*for(day in data[key].constraints[0]){
+                        console.log(data[key].constraints[0][day]);
+                    }*/
+                    for(var course in data[key]){
+                        draw2_courses.push(data[key][course]);
+                        draw2_constraints.push(data[key][course].constraints);
+                    }
+                    
+                    
+                }
+                
+            }
+                
+            if(pos.length == 0){
+                
+                alert("vacio");
+               for(var i = 0; i < draw2_courses.length; i++){
+                    pos.push({"x":0,"y":0});
+               }
+            }
+       
+                
+            for(var i = 0; i < draw2_courses.length; i++){
+                draw2_courses[i].x = pos[i].x;
+                draw2_courses[i].y = pos[i].y;
+                
+            }
+            
+            /*simulation
+                .nodes(courses)
+                .on("tick",ticked);*/
+            
+            var draw2_courses_svg = container.append("g").attr("id","opts");//.call(zoom);
+            
+            var draw2_courses_svg_zoom = draw2_courses_svg.append("rect")
+            .attr("x",0)
+            .attr("y",0)
+            .attr("width",container_width)
+            .attr("height",container_height)
+            .attr("fill",function(){
+                if(container == svgContainer) return "white"
+                else return "none";
+            ;});
+            
+            var draw2_my_links_bb;
+            if(edges == "All") draw2_my_links_bb = buildAll(draw2_courses); 
+            else draw2_my_links_bb = buildLinkTeacher(edges, draw2_courses,true);
+            console.log(draw2_my_links_bb);
+            
+            /*simulation
+                .force("link")
+                .link(my_links);*/
+            
+            /*var simulation = d3.forceSimulation()
+            .node(courses)
+            .link(my_links);*/
+            
+            var draw2_link_force = d3.forceLink(draw2_my_links_bb).id(function(d){return d.name;});
+            
+            var draw2_simulation = d3.forceSimulation()
+                .nodes(draw2_courses);
+            
+            draw2_simulation
+                //.force("charge_force", d3.forceManyBody().strength(-50))
+                //.force("center_force", d3.forceCenter(500,1000))
+                .force("links",draw2_link_force.strength(0));
+            
+            draw2_simulation.on("tick", draw2_ticked);
+            
+            
+            
+            var draw2_my_course_group = draw2_courses_svg.append("g");
+            
+            var draw2_my_course_link_container = draw2_courses_svg.append("g");
+            
+            var draw2_my_course_link = draw2_my_course_link_container
+            .attr("class","links")
+            .selectAll("line")
+            .data(draw2_my_links_bb).enter()
+            .append("line")
+            .attr("stroke-width", 2)
+            .attr("stroke","black");
+            
+            var draw2_my_course = draw2_my_course_group.selectAll("g")
+            .data(draw2_courses)
+            .enter()
+            .append("g")
+            .on("mouseover",function(d){
+            console.log(d.name);})
+            .call(d3.drag()
+                  //.subject(Object)
+                  //.subject(dragSubject)
+                  .on("start",draw2_dragStarted)
+                  .on("drag",draw2_dragged)
+                  .on("end",draw2_dragEnd));
+            
+            
+            
+            var draw2_my_course_rectangle = draw2_my_course.append("rect")
+            /*.attr("x",function(d,i){
+                return 100;
+            })*/
+            //.attr("y",function(d,i){return (i+1)*25;})
+            .attr("width",function(d){return d.students + draw2_width;})
+            .attr("height",function(d){return d.students + draw2_height;})
+            .attr("fill",function(d){
+                var index = d.min_working_days;
+                console.log(d);
+                return color(index);})
+            .attr("stroke","black")
+            .attr("stroke-width",2)
+            .attr("id",function(d,i){ return i; });
+            
+            var draw2_my_course_all = draw2_my_course.append("g");
+            
+
+            for(var day = 0; day < draw2_total_days; day++){
+                var draw2_my_course_day = draw2_my_course_all.append("rect")
+                .attr("x", function(d){return day * (draw2_width + d.students) / (draw2_total_days);})
+                //.attr("y",function(d,i){return (i+1)*25;})
+                .attr("width",function(d){return (draw2_width + d.students)/draw2_total_days;})
+                .attr("height",function(d){return draw2_height + d.students;}).attr("fill","none").attr("stroke","black").attr("stroke-width",2)
+                .attr("id",day);
+                //var my_course_timeslot = my_course_all.append
+            }
+            
+            var draw2_my_course_timeslot = draw2_my_course_all.selectAll("g")
+            .data(function(d,i){return d.constraints;})
+            .enter()
+            .append("g");
+            
+            var draw2_my_course_timeslot_i = draw2_my_course_timeslot.append("rect")
+            .attr("x",function(d){
+                var draw2_students = d3.select(this).node().parentNode.parentNode.__data__.students;
+                return d.day * (draw2_width + draw2_students) / draw2_total_days;
+                })
+            .attr("y",function(d){
+                //Get parent's data id
+                //i = my_course.data().indexOf(d3.select(this).node().parentNode.parentNode.__data__);
+                var draw2_students = d3.select(this).node().parentNode.parentNode.__data__.students;
+                return d.timeslot * (draw2_height + draw2_students) / draw2_total_timeslots;// + (i+1)*25;
+            })
+            .attr("width", function(d){
+                var draw2_students = d3.select(this).node().parentNode.parentNode.__data__.students;
+                return (draw2_width + draw2_students)/draw2_total_days;
+            })
+            .attr("height",function(d){
+                var draw2_students = d3.select(this).node().parentNode.parentNode.__data__.students;
+                return (draw2_height + draw2_students)/draw2_total_timeslots;
+            })
+            .attr("stroke","black")
+            .attr("stroke-width",1)
+            .attr("fill","red");
+            
+            /*function dragSubject(d){
+                return simulation.find(d3.event.x, d3.event.y);
+            }*/
+                
+            
+            function draw2_dragStarted(d){
+                
+                if(!d3.event.active) {
+					draw2_simulation.force("charge_force", d3.forceManyBody().strength(0));
+					draw2_simulation.alphaTarget(0.3).restart();
+					
+				}
+                d.x = d.x;
+                d.y = d.y;
+                //d3.event.sourceEvent.stopPropagation();
+                
+                /*d.fx = d.x;
+                d.fy = d.y;*/
+                /*console.log(d.x);
+                d3.select(this).attr("transform","translate("+d.x+","+d.y+")");*/
+            }
+            
+            function draw2_dragged(d){                         
+                    draw2_new_x = (d3.event.x - d3.event.x % jumps + (jumps - d.students - draw2_width)/2);
+                    draw2_new_y = (d3.event.y - d3.event.y % jumps + (jumps - d.students - draw2_height)/2);
+                    d3.select(this).attr("transform","translate("+ draw2_new_x+","+draw2_new_y+")");
+                    d.x = draw2_new_x;
+                    d.y = draw2_new_y;
+            }
+            
+            function draw2_dragEnd(d){
+                if(!d3.event.active) draw2_simulation.alphaTarget(0);
+                
+                var draw2_index = all_courses.indexOf(d.name);
+                
+                
+                course_positions[draw2_index].x = parseInt(d.x / jumps);
+                course_positions[draw2_index].y = parseInt(d.y / jumps);
+                    
+                
+                
+                //course_positions[d.name] = {};
+                console.log(draw2_index, course_positions[draw2_index]);
+                d.x = d.x;
+                d.y = d.y;
+            }
+            
+            console.log(draw2_my_course.node());
+            console.log(draw2_my_course.node().hasAttributes());
+            
+            function draw2_ticked(){
+                var x1, y1, x2, y2;
+                draw2_my_course_link
+                    .attr("x1",function(d){return x1 = d.source.x+ (d.source.students + draw2_width) / 2;})
+                    .attr("y1",function(d){return y1 = d.source.y+ (d.source.students + draw2_height )/2;})
+                    .attr("x2",function(d){return x2 = d.target.x+ (d.target.students + draw2_width )/ 2;})
+                    .attr("y2",function(d){return y2 = d.target.y+ (d.target.students + draw2_height )/ 2;});
+                if(x1 == x2 && y1 == y2){
+                    draw2_my_course_link
+                    .attr("x2",x2+draw2_width)
+                    .attr("y2",y2+draw2_height);
+                }
+                /*my_course_rectangle
+                    .attr("x",function(d){return d.x = d.x;})
+                    .attr("y",function(d){return d.y = d.y;});*/
+                
+                draw2_my_course.attr("transform", function(d,i){
+                    /*d.x = pos[i].x;
+                    d.y = pos[i].y;*/
+                    return "translate("+d.x+","+d.y+")";});
+                
+                /*d3.select(my_course_all._groups[0][4])
+                    .attr("x",function(d){return d.x;})
+                    .attr("y",function(d){return d.y;});*/
+                //console.log(my_course_all.selectAll("rect"));
+                //console.log(d3.select(my_course_all._groups[0][2]));
+            }
+            
+            /*function getTeacher(my_teacher){
+                //var teacher = document.getElementById('teacherField').value;
+				alert(my_teacher);
+                my_links = buildLinkTeacher(my_teacher, courses);
+                my_course_link.data(my_links).enter();
+            }*/
+			
+			
+
+		draw2_my_course.on('click', function(d){
+            if(container == svgContainer || container == opti_svg){
+			selected_x = 10, selected_y = 10, selected_width = 150, selected_height = 100;
+			
+			svgContainer_2.select("circle").remove();
+			svgContainer_2.select("g").remove();
+			selected_course = svgContainer_2.selectAll("g").data([d]).enter().append("g");
+			
+			selected_course_boundary = selected_course.append("rect")
+										.attr("x",selected_x)
+										.attr("y",selected_y)
+										.attr("width",selected_width)
+										.attr("height",selected_height)
+										.attr("fill",function(d){console.log(d);var index = d.min_working_days; return color(index);})
+										.attr("stroke","black")
+										.attr("stroke-width",2);
+			
+			selected_course_days_container = selected_course.append("g");
+			for(var i = 0; i < draw2_total_days; i++){
+				selected_course_days = selected_course_days_container.append("rect")
+										.attr("x",selected_x + i * (selected_width / draw2_total_days))
+										.attr("y",selected_y)
+										.attr("width",selected_width / draw2_total_days)
+										.attr("height",selected_height)
+										.attr("fill","none")
+										.attr("stroke","black")
+										.attr("stroke-width",2);
+			}
+			
+			selected_course_timeslots_container = selected_course_days_container.selectAll("g")
+										.data(function(d){return d.constraints;})
+										.enter()
+										.append("g");
+			
+			selected_course_timeslots = selected_course_timeslots_container.append("rect")
+										.attr("x",function(d){return selected_x + d.day * (selected_width / draw2_total_days);})
+										.attr("y",function(d){return selected_y + d.timeslot * (selected_height / draw2_total_timeslots);})
+										.attr("width", function(d){return selected_width / draw2_total_days;})
+										.attr("height", function(d){return selected_height / draw2_total_timeslots;})
+										.attr("fill","red")
+										.attr("stroke","black")
+										.attr("stroke-width",2);
+										
+			selected_course_text_container = selected_course.append("g");
+			
+			index = 0;
+            var items_per_column = 8;
+			for(var attribute in d){
+				
+				selected_course_text = selected_course_text_container.append("text")
+										.attr("x", selected_x + selected_width + 20 + 140 * parseInt(index / items_per_column))
+										.attr("y", selected_y + 20 + 40 * (index % items_per_column))
+										.text(function(d){
+											var description = "";
+											if(attribute == "name") description = "Course: ";
+											else if(attribute == "teacher") description = "Teacher: ";
+											else if(attribute == "lectures") description = "Lectures: ";
+											else if(attribute == "min_working_days") description = "MWD: ";
+											else if(attribute == "students") description = "Students: ";
+											else if(attribute == "curricula") description = "Curricula: ";
+											else if(attribute == "possible_rooms") description = "Possible rooms: ";
+											
+											if(attribute == "curricula" || attribute == "possible_rooms"){
+												for(var a in d[attribute]){
+													description += d[attribute][a] + " ";
+												}
+											}
+											else if(attribute == "name" || attribute == "teacher" || attribute == "lectures" || attribute == "students" || attribute == "min_working_days")
+												description += d[attribute];
+											return description;})
+										.attr("font-size", "20px")
+										.attr("fill","black");
+
+				index++;
+			}
+            }
+		});
+                
+                
+            }
+            
+            function generateInput(){
+                var my_a = "";
+                for(var i = 0; i < course_positions.length; i++){
+                    my_a += course_positions[i].x.toString() + "," + course_positions[i].y.toString() + ",";
+                }
+                return my_a;
+            }
+            
+            //var my_course_timeslot_line = my_course_timeslot.append("rect").attr("x",function(d){console.log(d);return 4;});
+            //console.log(my_course.data());
+            
+ 
+            /*var courses_svg = svgContainer.append("g");
+            var my_course = courses_svg.selectAll("rect").data(courses).enter().append("rect");
+            var my_course_attr = my_course.attr("x",function(d,i){return 100;}).attr("y",function(d,i){return (i+1)*25;}).attr("width",width).attr("height",height).attr("fill","none").attr("stroke","black").attr("stroke-width",2);
+            
+            var courses_rest_svg = svgContainer.append("g");
+            var my_course_rest = courses_rest_svg.selectAll("day ").data(courses).enter();
+            
+            //Painting blocks
+            for(var j = 0; j < total_days; j++){
+                var my_course_restr = my_course_rest.append("rect").attr("x",j*width/(total_days*1.0)+100).attr("y",function(d,i){return (i+1)*25}).attr("width",width/(total_days*1.0)).attr("height",height).attr("fill",function(d){for(key in d.constraints){
+                    if(d.constraints[key].day == j) return "none";
+                }
+            return "none";
+                }).attr("stroke","black").attr("stroke-width",2);
+            
+                
+            }
+            
+            var courses_ts_rest_svg = svgContainer.append("g");
+            var my_course_ts_rest = courses_ts_rest_svg;//.selectAll("rect");
+            for(var j = 0; j < courses.length; j++){
+                for(var constraint in courses[j].constraints){
+                    //console.log(courses[j].constraints[constraint].day);
+                    var my_course_ts_restr = my_course_ts_rest.append("rect").attr("x",courses[j].constraints[constraint].day*width/(total_days*1.0)+100).attr("y",(j+1)*25+courses[j].constraints[constraint].timeslot*height/(total_timeslots*1.0)).attr("width", width/(total_days*1.0)).attr("height",height/(total_timeslots*1.0)).attr("fill","red").attr("stroke","black").attr("stroke-width",2);
+                    
+                }
+            }
+            
+            var text = courses_svg.selectAll("text").data(courses).enter().append("text");
+           
+            var text_labels = text.attr("x",0).attr("y",function(d,i){return (i+1)*25+height*3/4;}).attr("font-family","arial").attr("font-size","15px").attr("fill","black").text(function(d){return d.name;});*/
+        });
+        
+        //var circleRadii = [40, 20, 10];
+        /*var circleRadii = [{"cx":40, "cy":40, "r":10, "color":"green"},
+                           {"cx":20, "cy":20, "r":10, "color":"purple"},
+                           {"cx":10, "cy":10, "r":10, "color":"red"}];
+        var points = [{"x":10, "y":10}, {"x":30, "y":100}, {"x":100, "y":100}  
+        ]
+        
+        var new_points = [0,100,200,300,400,500,600,700,800,900,1000];
+            
+        var max_data_point = d3.max(new_points), min_data_point = d3.min(new_points);
+
+        var linear_scale = d3.scaleLinear().domain([min_data_point,max_data_point]).range([0,100]);
+
+        var axis_scale = d3.scaleLinear().domain([0,100]).range([0,200]);    
+
+        for(var i = 0; i < new_points.length; i++)
+        {
+            new_points[i] = linear_scale(new_points[i]);
+        }
+
+        var max_x =0, max_y = 0;
+           
+            
+        for(var i = 0; i < points.lengh;i++)
+        {
+            if(points[i].x > max_x) max_x = points[i].x;
+            if(points[i].y > max_y) max_y = points[i].y;
+        }
+
+        
+        
+        var xAxis = d3.axisBottom().scale(axis_scale);
+            
+        var xAxisGroup = svgContainer.append("g").call(xAxis);
+            
+        var circle_group = svgContainer.append("g").attr("transform","translate(10,10)");
+            
+        var circles = circle_group.selectAll("circle").data(circleRadii).enter().append("circle");
+        
+        var circleAttributes = circles.attr("cx",function(d){return d.cx;}).attr("cy",function(d){return d.cy;}).attr("r", function(d){return d.r}).style("fill",dColor);
+            
+            var rectangle = svgContainer.append("rect").attr("x", 100).attr("y",100).attr("width",50).attr("height",100).style("fill","blue");
+            
+            var my_path = svgContainer.append("path").attr("d",
+                                                           "M 10 25 L 10 75 L 60 75 L 10 25").attr("stroke","red").attr("stroke-width","2").attr("fill","none");
+                                                           
+             var line_function = d3.line().curve(d3.curveCardinal).x(function(d){return d.x;}).y(function(d){return d.y;});                                              
+            var line_graph = svgContainer.append("path").attr("d",line_function(points)).attr("stroke","green").attr("stroke-width",2).attr("fill","none");
+                                     
+            var text = circle_group.selectAll("text").data(new_points).enter().append("text");
+            
+            var text_labels = text.attr("x",function(d){return d;}).attr("y",function(d){return d;}).attr("font-family", "sans-serif").attr("font-size","10px").attr("fill","black").text(function(d){return d.toString();});
+            
+            function dColor(d){
+                return d.color;
+            }*/
+        </script>
+    </body>
+</html>

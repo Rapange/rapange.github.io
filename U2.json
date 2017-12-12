@@ -1,0 +1,494 @@
+{
+ "university" : { "name" : "Let0405-1",
+ "num_courses" : 54,
+ "num_rooms" : 9,
+ "num_days" : 6,
+ "num_time_slots" : 6
+},
+"LinTed1" : {
+ "teacher" : "t000",
+ "lectures" : 1,
+ "min_working days" : 1,
+ "students" : 10,
+ "possible_rooms" : ["10","14","15","C1","L","M","O","B","A"],
+ "curricula:" : ["q004"],
+ "constraints" : [{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"AlfInf" : {
+ "teacher" : "t001",
+ "lectures" : 1,
+ "min_working days" : 1,
+ "students" : 10,
+ "possible_rooms" : ["10","14","15","C1","L","M","O","B","A"],
+ "curricula:" : ["q004"],
+ "constraints" : [{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"LetIta1" : {
+ "teacher" : "t002",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 300,
+ "possible_rooms" : ["A"],
+ "curricula:" : ["q000","q005","q017","q022","q028","q038","q039","q040","q041","q042","q043","q044","q045","q046","q047","q048","q049","q050","q051","q052","q053","q054","q055","q056","q057","q058","q059","q085"],
+ "constraints" : [{ "day" : 0, "timeslot" : 2},{ "day" : 0, "timeslot" : 5},{ "day" : 1, "timeslot" : 5},{ "day" : 2, "timeslot" : 3},{ "day" : 2, "timeslot" : 4},{ "day" : 2, "timeslot" : 5},{ "day" : 3, "timeslot" : 0},{ "day" : 3, "timeslot" : 1},{ "day" : 3, "timeslot" : 2},{ "day" : 3, "timeslot" : 3},{ "day" : 3, "timeslot" : 4},{ "day" : 3, "timeslot" : 5},{ "day" : 4, "timeslot" : 0},{ "day" : 4, "timeslot" : 1},{ "day" : 4, "timeslot" : 2},{ "day" : 4, "timeslot" : 3},{ "day" : 4, "timeslot" : 4},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"FilTesItaCS" : {
+ "teacher" : "t003",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 100,
+ "possible_rooms" : ["10","B","A"],
+ "curricula:" : ["q127","q128","q129","q130","q131","q132","q133","q134","q135","q136"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 0, "timeslot" : 1},{ "day" : 0, "timeslot" : 4},{ "day" : 0, "timeslot" : 5},{ "day" : 1, "timeslot" : 0},{ "day" : 1, "timeslot" : 5},{ "day" : 2, "timeslot" : 0},{ "day" : 2, "timeslot" : 5},{ "day" : 3, "timeslot" : 0},{ "day" : 3, "timeslot" : 5},{ "day" : 4, "timeslot" : 0},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"LinGreA" : {
+ "teacher" : "t004",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 50,
+ "possible_rooms" : ["10","14","15","L","M","B","A"],
+ "curricula:" : ["q005","q029","q030","q031"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 1, "timeslot" : 0},{ "day" : 2, "timeslot" : 0},{ "day" : 3, "timeslot" : 0},{ "day" : 4, "timeslot" : 0},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"LinLatA" : {
+ "teacher" : "t005",
+ "lectures" : 2,
+ "min_working days" : 2,
+ "students" : 60,
+ "possible_rooms" : ["10","L","M","B","A"],
+ "curricula:" : ["q000","q005","q017","q022"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 1, "timeslot" : 0},{ "day" : 2, "timeslot" : 0},{ "day" : 2, "timeslot" : 1},{ "day" : 3, "timeslot" : 0},{ "day" : 3, "timeslot" : 1},{ "day" : 4, "timeslot" : 0},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"LinLetGre1" : {
+ "teacher" : "t006",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 170,
+ "possible_rooms" : ["B","A"],
+ "curricula:" : ["q006","q009","q045","q046","q047","q054","q055","q056","q061","q065","q069","q070","q071","q075","q079","q080","q081"],
+ "constraints" : [{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"LinLetLat1" : {
+ "teacher" : "t007",
+ "lectures" : 3,
+ "min_working days" : 2,
+ "students" : 350,
+ "possible_rooms" : ["A"],
+ "curricula:" : ["q001","q002","q003","q006","q007","q010","q011","q012","q013","q015","q018","q048","q049","q050","q057","q058","q059","q062","q066","q069","q072","q073","q076","q079","q082","q083","q108","q111","q137","q139","q142"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 0, "timeslot" : 1},{ "day" : 0, "timeslot" : 2},{ "day" : 2, "timeslot" : 3},{ "day" : 2, "timeslot" : 4},{ "day" : 2, "timeslot" : 5},{ "day" : 3, "timeslot" : 0},{ "day" : 3, "timeslot" : 1},{ "day" : 3, "timeslot" : 2},{ "day" : 3, "timeslot" : 3},{ "day" : 3, "timeslot" : 4},{ "day" : 3, "timeslot" : 5},{ "day" : 4, "timeslot" : 0},{ "day" : 4, "timeslot" : 1},{ "day" : 4, "timeslot" : 2},{ "day" : 4, "timeslot" : 3},{ "day" : 4, "timeslot" : 4},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"LetCriAnt" : {
+ "teacher" : "t008",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 80,
+ "possible_rooms" : ["10","B","A"],
+ "curricula:" : ["q007","q011","q023","q139","q140"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 1, "timeslot" : 0},{ "day" : 2, "timeslot" : 0},{ "day" : 3, "timeslot" : 0},{ "day" : 4, "timeslot" : 0},{ "day" : 4, "timeslot" : 2},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"Papiro" : {
+ "teacher" : "t009",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 230,
+ "possible_rooms" : ["A"],
+ "curricula:" : ["q007","q010","q011","q012","q013","q033","q035","q037","q100","q101","q102","q103","q108","q109","q110","q139","q140","q142","q143"],
+ "constraints" : [{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"EpiGre" : {
+ "teacher" : "t010",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 80,
+ "possible_rooms" : ["10","B","A"],
+ "curricula:" : ["q010","q011","q012","q013","q139","q142"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 0, "timeslot" : 5},{ "day" : 1, "timeslot" : 0},{ "day" : 1, "timeslot" : 5},{ "day" : 2, "timeslot" : 0},{ "day" : 2, "timeslot" : 5},{ "day" : 3, "timeslot" : 0},{ "day" : 3, "timeslot" : 5},{ "day" : 4, "timeslot" : 0},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"StoMod1" : {
+ "teacher" : "t011",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 440,
+ "possible_rooms" : ["A"],
+ "curricula:" : ["q001","q002","q003","q015","q018","q023","q024","q025","q037","q039","q040","q041","q042","q043","q044","q045","q046","q047","q048","q049","q050","q060","q061","q062","q063","q064","q075","q076","q077","q078","q079","q080","q081","q082","q083","q084","q086","q087","q088","q089","q095","q105"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 0, "timeslot" : 1},{ "day" : 0, "timeslot" : 2},{ "day" : 2, "timeslot" : 3},{ "day" : 2, "timeslot" : 4},{ "day" : 2, "timeslot" : 5},{ "day" : 3, "timeslot" : 0},{ "day" : 3, "timeslot" : 1},{ "day" : 3, "timeslot" : 2},{ "day" : 3, "timeslot" : 3},{ "day" : 3, "timeslot" : 4},{ "day" : 3, "timeslot" : 5},{ "day" : 4, "timeslot" : 0},{ "day" : 4, "timeslot" : 1},{ "day" : 4, "timeslot" : 2},{ "day" : 4, "timeslot" : 3},{ "day" : 4, "timeslot" : 4},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"StoCon" : {
+ "teacher" : "t012",
+ "lectures" : 2,
+ "min_working days" : 2,
+ "students" : 400,
+ "possible_rooms" : ["A"],
+ "curricula:" : ["q004","q016","q019","q020","q021","q026","q027","q039","q040","q041","q051","q052","q053","q054","q055","q056","q057","q058","q059","q060","q061","q062","q063","q064","q065","q066","q067","q068","q069","q070","q071","q072","q073","q074","q090","q091","q092","q096","q106"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 0, "timeslot" : 1},{ "day" : 0, "timeslot" : 2},{ "day" : 2, "timeslot" : 3},{ "day" : 2, "timeslot" : 4},{ "day" : 2, "timeslot" : 5},{ "day" : 3, "timeslot" : 0},{ "day" : 3, "timeslot" : 1},{ "day" : 3, "timeslot" : 2},{ "day" : 3, "timeslot" : 3},{ "day" : 3, "timeslot" : 4},{ "day" : 3, "timeslot" : 5},{ "day" : 4, "timeslot" : 0},{ "day" : 4, "timeslot" : 1},{ "day" : 4, "timeslot" : 2},{ "day" : 4, "timeslot" : 3},{ "day" : 4, "timeslot" : 4},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"Geo2" : {
+ "teacher" : "t013",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 20,
+ "possible_rooms" : ["10","14","15","C1","L","M","O","B","A"],
+ "curricula:" : ["q018","q020"],
+ "constraints" : [{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"AntCul1" : {
+ "teacher" : "t014",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 370,
+ "possible_rooms" : ["A"],
+ "curricula:" : ["q015","q017","q018","q021","q023","q024","q025","q026","q027","q035","q036","q093","q094","q095","q096","q113","q114","q115","q120","q121","q122","q123","q126","q145","q146","q147","q148","q149","q150"],
+ "constraints" : [{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"StoFil1" : {
+ "teacher" : "t015",
+ "lectures" : 3,
+ "min_working days" : 2,
+ "students" : 80,
+ "possible_rooms" : ["10","B","A"],
+ "curricula:" : ["q000","q005","q017","q022","q091","q124"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 0, "timeslot" : 1},{ "day" : 0, "timeslot" : 2},{ "day" : 4, "timeslot" : 3},{ "day" : 4, "timeslot" : 4},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"StoCriChi" : {
+ "teacher" : "t016",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 60,
+ "possible_rooms" : ["10","L","M","B","A"],
+ "curricula:" : ["q013","q016","q023","q033","q034","q144"],
+ "constraints" : [{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"StoSci" : {
+ "teacher" : "t017",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 50,
+ "possible_rooms" : ["10","14","15","L","M","B","A"],
+ "curricula:" : ["q016","q019","q020","q021","q023"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 0, "timeslot" : 1},{ "day" : 0, "timeslot" : 2},{ "day" : 2, "timeslot" : 3},{ "day" : 2, "timeslot" : 4},{ "day" : 2, "timeslot" : 5},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"MetRicArc" : {
+ "teacher" : "t018",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 10,
+ "possible_rooms" : ["10","14","15","C1","L","M","O","B","A"],
+ "curricula:" : ["q028"],
+ "constraints" : [{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"ArcCla1" : {
+ "teacher" : "t019",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 130,
+ "possible_rooms" : ["10","B","A"],
+ "curricula:" : ["q006","q009","q028","q114","q115","q120","q121","q122","q123"],
+ "constraints" : [{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"LinLatB" : {
+ "teacher" : "t020",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 30,
+ "possible_rooms" : ["10","14","15","C1","L","M","O","B","A"],
+ "curricula:" : ["q028","q037","q085"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 0, "timeslot" : 1},{ "day" : 0, "timeslot" : 2},{ "day" : 0, "timeslot" : 3},{ "day" : 0, "timeslot" : 4},{ "day" : 0, "timeslot" : 5},{ "day" : 1, "timeslot" : 3},{ "day" : 1, "timeslot" : 4},{ "day" : 1, "timeslot" : 5},{ "day" : 2, "timeslot" : 0},{ "day" : 2, "timeslot" : 1},{ "day" : 2, "timeslot" : 2},{ "day" : 2, "timeslot" : 3},{ "day" : 2, "timeslot" : 4},{ "day" : 2, "timeslot" : 5},{ "day" : 3, "timeslot" : 3},{ "day" : 3, "timeslot" : 4},{ "day" : 3, "timeslot" : 5},{ "day" : 4, "timeslot" : 0},{ "day" : 4, "timeslot" : 1},{ "day" : 4, "timeslot" : 2},{ "day" : 4, "timeslot" : 3},{ "day" : 4, "timeslot" : 4},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"Numism" : {
+ "teacher" : "t021",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 60,
+ "possible_rooms" : ["10","L","M","B","A"],
+ "curricula:" : ["q012","q029","q030","q031","q142","q144"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 0, "timeslot" : 5},{ "day" : 1, "timeslot" : 0},{ "day" : 1, "timeslot" : 5},{ "day" : 2, "timeslot" : 0},{ "day" : 2, "timeslot" : 5},{ "day" : 3, "timeslot" : 0},{ "day" : 3, "timeslot" : 1},{ "day" : 3, "timeslot" : 5},{ "day" : 4, "timeslot" : 0},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"PrePro" : {
+ "teacher" : "t022",
+ "lectures" : 3,
+ "min_working days" : 2,
+ "students" : 40,
+ "possible_rooms" : ["10","14","15","C1","L","M","B","A"],
+ "curricula:" : ["q030","q102","q103","q142"],
+ "constraints" : [{ "day" : 0, "timeslot" : 3},{ "day" : 0, "timeslot" : 4},{ "day" : 0, "timeslot" : 5},{ "day" : 1, "timeslot" : 3},{ "day" : 1, "timeslot" : 4},{ "day" : 1, "timeslot" : 5},{ "day" : 2, "timeslot" : 5},{ "day" : 3, "timeslot" : 5},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"StoVicOriAnt" : {
+ "teacher" : "t023",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 40,
+ "possible_rooms" : ["10","14","15","C1","L","M","B","A"],
+ "curricula:" : ["q009","q031","q100","q101"],
+ "constraints" : [{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"ArcEge" : {
+ "teacher" : "t024",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 50,
+ "possible_rooms" : ["10","14","15","L","M","B","A"],
+ "curricula:" : ["q034","q036","q100","q102","q142"],
+ "constraints" : [{ "day" : 0, "timeslot" : 4},{ "day" : 0, "timeslot" : 5},{ "day" : 1, "timeslot" : 4},{ "day" : 1, "timeslot" : 5},{ "day" : 2, "timeslot" : 5},{ "day" : 3, "timeslot" : 5},{ "day" : 4, "timeslot" : 3},{ "day" : 4, "timeslot" : 4},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"FilSem" : {
+ "teacher" : "t023",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 50,
+ "possible_rooms" : ["10","14","15","L","M","B","A"],
+ "curricula:" : ["q033","q034","q035","q036","q140"],
+ "constraints" : [{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"LegBenCul1" : {
+ "teacher" : "t025",
+ "lectures" : 2,
+ "min_working days" : 2,
+ "students" : 170,
+ "possible_rooms" : ["B","A"],
+ "curricula:" : ["q032","q033","q034","q035","q036","q037","q086","q087","q088","q089","q093","q094","q095","q096"],
+ "constraints" : [{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"Bibeco" : {
+ "teacher" : "t026",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 70,
+ "possible_rooms" : ["10","B","A"],
+ "curricula:" : ["q002","q037","q127","q128","q129","q130","q131"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 0, "timeslot" : 1},{ "day" : 0, "timeslot" : 2},{ "day" : 1, "timeslot" : 0},{ "day" : 1, "timeslot" : 1},{ "day" : 1, "timeslot" : 2},{ "day" : 2, "timeslot" : 0},{ "day" : 2, "timeslot" : 1},{ "day" : 2, "timeslot" : 2},{ "day" : 3, "timeslot" : 0},{ "day" : 3, "timeslot" : 1},{ "day" : 3, "timeslot" : 2},{ "day" : 4, "timeslot" : 0},{ "day" : 4, "timeslot" : 1},{ "day" : 4, "timeslot" : 2},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"ConBenArcLib" : {
+ "teacher" : "t027",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 10,
+ "possible_rooms" : ["10","14","15","C1","L","M","O","B","A"],
+ "curricula:" : ["q037"],
+ "constraints" : [{ "day" : 1, "timeslot" : 0},{ "day" : 1, "timeslot" : 1},{ "day" : 1, "timeslot" : 2},{ "day" : 1, "timeslot" : 3},{ "day" : 1, "timeslot" : 4},{ "day" : 1, "timeslot" : 5},{ "day" : 4, "timeslot" : 3},{ "day" : 4, "timeslot" : 4},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"ResBenArcLib" : {
+ "teacher" : "t028",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 150,
+ "possible_rooms" : ["B","A"],
+ "curricula:" : ["q042","q043","q044","q051","q052","q053","q063","q067","q070","q072","q074","q077","q080","q082","q084"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 0, "timeslot" : 1},{ "day" : 0, "timeslot" : 2},{ "day" : 0, "timeslot" : 3},{ "day" : 0, "timeslot" : 4},{ "day" : 0, "timeslot" : 5},{ "day" : 1, "timeslot" : 0},{ "day" : 1, "timeslot" : 1},{ "day" : 1, "timeslot" : 2},{ "day" : 1, "timeslot" : 3},{ "day" : 1, "timeslot" : 4},{ "day" : 1, "timeslot" : 5},{ "day" : 4, "timeslot" : 3},{ "day" : 4, "timeslot" : 4},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"InfArcBib" : {
+ "teacher" : "t029",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 90,
+ "possible_rooms" : ["10","B","A"],
+ "curricula:" : ["q060","q065","q066","q067","q068","q075","q076","q077","q078"],
+ "constraints" : [{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"TeoTecCatCla" : {
+ "teacher" : "t030",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 90,
+ "possible_rooms" : ["10","B","A"],
+ "curricula:" : ["q064","q068","q071","q073","q074","q078","q081","q083","q084"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 0, "timeslot" : 1},{ "day" : 0, "timeslot" : 2},{ "day" : 1, "timeslot" : 0},{ "day" : 1, "timeslot" : 1},{ "day" : 1, "timeslot" : 2},{ "day" : 2, "timeslot" : 0},{ "day" : 2, "timeslot" : 1},{ "day" : 2, "timeslot" : 2},{ "day" : 3, "timeslot" : 0},{ "day" : 3, "timeslot" : 1},{ "day" : 3, "timeslot" : 2},{ "day" : 4, "timeslot" : 0},{ "day" : 4, "timeslot" : 1},{ "day" : 4, "timeslot" : 2},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"StoArtMed1" : {
+ "teacher" : "t031",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 150,
+ "possible_rooms" : ["B","A"],
+ "curricula:" : ["q000","q024","q026","q039","q042","q045","q048","q051","q054","q057","q085","q127","q132","q145"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 0, "timeslot" : 1},{ "day" : 0, "timeslot" : 2},{ "day" : 0, "timeslot" : 3},{ "day" : 0, "timeslot" : 4},{ "day" : 0, "timeslot" : 5},{ "day" : 1, "timeslot" : 0},{ "day" : 1, "timeslot" : 1},{ "day" : 1, "timeslot" : 2},{ "day" : 1, "timeslot" : 3},{ "day" : 1, "timeslot" : 4},{ "day" : 1, "timeslot" : 5},{ "day" : 2, "timeslot" : 0},{ "day" : 2, "timeslot" : 1},{ "day" : 2, "timeslot" : 2},{ "day" : 2, "timeslot" : 3},{ "day" : 2, "timeslot" : 4},{ "day" : 2, "timeslot" : 5},{ "day" : 3, "timeslot" : 0},{ "day" : 3, "timeslot" : 1},{ "day" : 3, "timeslot" : 2},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"IcoIcoA" : {
+ "teacher" : "t032",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 100,
+ "possible_rooms" : ["10","B","A"],
+ "curricula:" : ["q085","q087","q114","q115","q120","q122","q130","q135","q148"],
+ "constraints" : [{ "day" : 3, "timeslot" : 0},{ "day" : 3, "timeslot" : 1},{ "day" : 3, "timeslot" : 2},{ "day" : 3, "timeslot" : 3},{ "day" : 3, "timeslot" : 4},{ "day" : 3, "timeslot" : 5},{ "day" : 4, "timeslot" : 0},{ "day" : 4, "timeslot" : 1},{ "day" : 4, "timeslot" : 2},{ "day" : 4, "timeslot" : 3},{ "day" : 4, "timeslot" : 4},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"IcoIcoB" : {
+ "teacher" : "t032",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 100,
+ "possible_rooms" : ["10","B","A"],
+ "curricula:" : ["q114","q115","q121","q131","q136","q149"],
+ "constraints" : []
+}, 
+"StoArtMod1" : {
+ "teacher" : "t033",
+ "lectures" : 2,
+ "min_working days" : 2,
+ "students" : 200,
+ "possible_rooms" : ["B","A"],
+ "curricula:" : ["q001","q002","q003","q015","q025","q027","q040","q043","q046","q049","q052","q055","q058","q086","q087","q088","q089","q128","q133","q146"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 0, "timeslot" : 1},{ "day" : 0, "timeslot" : 2},{ "day" : 2, "timeslot" : 2},{ "day" : 2, "timeslot" : 3},{ "day" : 2, "timeslot" : 4},{ "day" : 2, "timeslot" : 5},{ "day" : 3, "timeslot" : 0},{ "day" : 3, "timeslot" : 1},{ "day" : 3, "timeslot" : 2},{ "day" : 3, "timeslot" : 3},{ "day" : 3, "timeslot" : 4},{ "day" : 3, "timeslot" : 5},{ "day" : 4, "timeslot" : 0},{ "day" : 4, "timeslot" : 1},{ "day" : 4, "timeslot" : 2},{ "day" : 4, "timeslot" : 3},{ "day" : 4, "timeslot" : 4},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"MetRicStoArt" : {
+ "teacher" : "t034",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 70,
+ "possible_rooms" : ["10","B","A"],
+ "curricula:" : ["q088","q114","q120","q121","q123"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 1, "timeslot" : 0},{ "day" : 2, "timeslot" : 0},{ "day" : 3, "timeslot" : 0},{ "day" : 4, "timeslot" : 0},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"StoArtLatAmeA" : {
+ "teacher" : "t035",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 170,
+ "possible_rooms" : ["B","A"],
+ "curricula:" : ["q089","q091","q092","q115","q120","q121","q122","q123","q150"],
+ "constraints" : [{ "day" : 2, "timeslot" : 3},{ "day" : 2, "timeslot" : 4},{ "day" : 2, "timeslot" : 5},{ "day" : 3, "timeslot" : 0},{ "day" : 3, "timeslot" : 1},{ "day" : 3, "timeslot" : 2},{ "day" : 3, "timeslot" : 3},{ "day" : 3, "timeslot" : 4},{ "day" : 3, "timeslot" : 5},{ "day" : 4, "timeslot" : 0},{ "day" : 4, "timeslot" : 1},{ "day" : 4, "timeslot" : 2},{ "day" : 4, "timeslot" : 3},{ "day" : 4, "timeslot" : 4},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"StoArtCon1" : {
+ "teacher" : "t036",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 150,
+ "possible_rooms" : ["B","A"],
+ "curricula:" : ["q004","q016","q041","q044","q047","q050","q053","q056","q059","q090","q091","q092","q129","q134","q147"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 0, "timeslot" : 1},{ "day" : 0, "timeslot" : 2},{ "day" : 0, "timeslot" : 3},{ "day" : 0, "timeslot" : 4},{ "day" : 0, "timeslot" : 5},{ "day" : 1, "timeslot" : 0},{ "day" : 1, "timeslot" : 1},{ "day" : 1, "timeslot" : 2},{ "day" : 1, "timeslot" : 3},{ "day" : 1, "timeslot" : 4},{ "day" : 1, "timeslot" : 5},{ "day" : 2, "timeslot" : 0},{ "day" : 2, "timeslot" : 1},{ "day" : 2, "timeslot" : 2},{ "day" : 4, "timeslot" : 3},{ "day" : 4, "timeslot" : 4},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"PsiArt" : {
+ "teacher" : "t037",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 50,
+ "possible_rooms" : ["10","14","15","L","M","B","A"],
+ "curricula:" : ["q019","q020","q021","q092","q125"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 0, "timeslot" : 1},{ "day" : 0, "timeslot" : 2},{ "day" : 0, "timeslot" : 3},{ "day" : 0, "timeslot" : 4},{ "day" : 0, "timeslot" : 5},{ "day" : 1, "timeslot" : 0},{ "day" : 2, "timeslot" : 0},{ "day" : 3, "timeslot" : 0},{ "day" : 4, "timeslot" : 0},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"ArcPae" : {
+ "teacher" : "t038",
+ "lectures" : 1,
+ "min_working days" : 1,
+ "students" : 340,
+ "possible_rooms" : ["A"],
+ "curricula:" : ["q032","q033","q034","q035","q036","q060","q061","q062","q063","q064","q065","q066","q067","q068","q069","q070","q071","q072","q073","q074","q075","q076","q077","q078","q079","q080","q081","q082","q083","q084","q090","q091","q092","q126"],
+ "constraints" : [{ "day" : 1, "timeslot" : 3},{ "day" : 1, "timeslot" : 4},{ "day" : 1, "timeslot" : 5},{ "day" : 2, "timeslot" : 3},{ "day" : 2, "timeslot" : 4},{ "day" : 2, "timeslot" : 5},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"LetIta4CS" : {
+ "teacher" : "t002",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 30,
+ "possible_rooms" : ["10","14","15","C1","L","M","O","B","A"],
+ "curricula:" : ["q109","q112","q137"],
+ "constraints" : [{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"StoGreCS" : {
+ "teacher" : "t039",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 60,
+ "possible_rooms" : ["10","L","M","B","A"],
+ "curricula:" : ["q100","q101","q102","q103","q139","q143"],
+ "constraints" : [{ "day" : 0, "timeslot" : 3},{ "day" : 0, "timeslot" : 4},{ "day" : 0, "timeslot" : 5},{ "day" : 1, "timeslot" : 3},{ "day" : 1, "timeslot" : 4},{ "day" : 1, "timeslot" : 5},{ "day" : 2, "timeslot" : 3},{ "day" : 2, "timeslot" : 4},{ "day" : 2, "timeslot" : 5},{ "day" : 3, "timeslot" : 0},{ "day" : 3, "timeslot" : 1},{ "day" : 3, "timeslot" : 2},{ "day" : 3, "timeslot" : 3},{ "day" : 3, "timeslot" : 4},{ "day" : 3, "timeslot" : 5},{ "day" : 4, "timeslot" : 0},{ "day" : 4, "timeslot" : 1},{ "day" : 4, "timeslot" : 2},{ "day" : 4, "timeslot" : 3},{ "day" : 4, "timeslot" : 4},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"StoMedCS" : {
+ "teacher" : "t040",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 110,
+ "possible_rooms" : ["10","B","A"],
+ "curricula:" : ["q127","q128","q129","q130","q131","q132","q133","q134","q135","q136","q144"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 0, "timeslot" : 1},{ "day" : 0, "timeslot" : 2},{ "day" : 0, "timeslot" : 3},{ "day" : 0, "timeslot" : 4},{ "day" : 0, "timeslot" : 5},{ "day" : 1, "timeslot" : 0},{ "day" : 1, "timeslot" : 1},{ "day" : 1, "timeslot" : 2},{ "day" : 1, "timeslot" : 3},{ "day" : 1, "timeslot" : 4},{ "day" : 1, "timeslot" : 5},{ "day" : 2, "timeslot" : 0},{ "day" : 2, "timeslot" : 1},{ "day" : 2, "timeslot" : 2},{ "day" : 2, "timeslot" : 3},{ "day" : 2, "timeslot" : 4},{ "day" : 2, "timeslot" : 5},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"BioArcCS" : {
+ "teacher" : "t041",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 40,
+ "possible_rooms" : ["10","14","15","C1","L","M","B","A"],
+ "curricula:" : ["q100","q101","q102","q103"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 0, "timeslot" : 1},{ "day" : 0, "timeslot" : 2},{ "day" : 0, "timeslot" : 3},{ "day" : 2, "timeslot" : 3},{ "day" : 2, "timeslot" : 4},{ "day" : 2, "timeslot" : 5},{ "day" : 3, "timeslot" : 0},{ "day" : 3, "timeslot" : 1},{ "day" : 3, "timeslot" : 2},{ "day" : 3, "timeslot" : 3},{ "day" : 3, "timeslot" : 4},{ "day" : 3, "timeslot" : 5},{ "day" : 4, "timeslot" : 0},{ "day" : 4, "timeslot" : 1},{ "day" : 4, "timeslot" : 2},{ "day" : 4, "timeslot" : 3},{ "day" : 4, "timeslot" : 4},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"Antrop" : {
+ "teacher" : "t041",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 10,
+ "possible_rooms" : ["10","14","15","C1","L","M","O","B","A"],
+ "curricula:" : ["q104"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 0, "timeslot" : 1},{ "day" : 0, "timeslot" : 2},{ "day" : 0, "timeslot" : 3},{ "day" : 2, "timeslot" : 3},{ "day" : 2, "timeslot" : 4},{ "day" : 2, "timeslot" : 5},{ "day" : 3, "timeslot" : 0},{ "day" : 3, "timeslot" : 1},{ "day" : 3, "timeslot" : 2},{ "day" : 3, "timeslot" : 3},{ "day" : 3, "timeslot" : 4},{ "day" : 3, "timeslot" : 5},{ "day" : 4, "timeslot" : 0},{ "day" : 4, "timeslot" : 1},{ "day" : 4, "timeslot" : 2},{ "day" : 4, "timeslot" : 3},{ "day" : 4, "timeslot" : 4},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"LegBenCul2" : {
+ "teacher" : "t025",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 140,
+ "possible_rooms" : ["B","A"],
+ "curricula:" : ["q105","q106","q113","q114","q115","q120","q121","q122","q123"],
+ "constraints" : [{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"StoArtMed2CS" : {
+ "teacher" : "t031",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 100,
+ "possible_rooms" : ["10","B","A"],
+ "curricula:" : ["q114","q115","q120","q121","q122","q123"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 0, "timeslot" : 1},{ "day" : 0, "timeslot" : 2},{ "day" : 0, "timeslot" : 3},{ "day" : 0, "timeslot" : 4},{ "day" : 0, "timeslot" : 5},{ "day" : 1, "timeslot" : 0},{ "day" : 1, "timeslot" : 1},{ "day" : 1, "timeslot" : 2},{ "day" : 1, "timeslot" : 3},{ "day" : 1, "timeslot" : 4},{ "day" : 1, "timeslot" : 5},{ "day" : 2, "timeslot" : 0},{ "day" : 2, "timeslot" : 1},{ "day" : 2, "timeslot" : 2},{ "day" : 2, "timeslot" : 3},{ "day" : 2, "timeslot" : 4},{ "day" : 2, "timeslot" : 5},{ "day" : 3, "timeslot" : 0},{ "day" : 3, "timeslot" : 1},{ "day" : 3, "timeslot" : 2},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"ChiAppBenCul" : {
+ "teacher" : "t042",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 20,
+ "possible_rooms" : ["10","14","15","C1","L","M","O","B","A"],
+ "curricula:" : ["q124","q125"],
+ "constraints" : [{ "day" : 0, "timeslot" : 5},{ "day" : 1, "timeslot" : 5},{ "day" : 2, "timeslot" : 5},{ "day" : 3, "timeslot" : 5},{ "day" : 4, "timeslot" : 3},{ "day" : 4, "timeslot" : 4},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"StoArc" : {
+ "teacher" : "t019",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 10,
+ "possible_rooms" : ["10","14","15","C1","L","M","O","B","A"],
+ "curricula:" : ["q093"],
+ "constraints" : [{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"StoArt" : {
+ "teacher" : "t043",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 60,
+ "possible_rooms" : ["10","L","M","B","A"],
+ "curricula:" : ["q094","q095","q096"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 3, "timeslot" : 0},{ "day" : 3, "timeslot" : 1},{ "day" : 3, "timeslot" : 2},{ "day" : 3, "timeslot" : 3},{ "day" : 3, "timeslot" : 4},{ "day" : 3, "timeslot" : 5},{ "day" : 4, "timeslot" : 0},{ "day" : 4, "timeslot" : 1},{ "day" : 4, "timeslot" : 2},{ "day" : 4, "timeslot" : 3},{ "day" : 4, "timeslot" : 4},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"FonSocAntCulI" : {
+ "teacher" : "t044",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 70,
+ "possible_rooms" : ["10","B","A"],
+ "curricula:" : ["q015","q017","q023","q024","q025","q026","q027"],
+ "constraints" : [{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"Bibgra" : {
+ "teacher" : "t045",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 280,
+ "possible_rooms" : ["A"],
+ "curricula:" : ["q003","q038","q039","q040","q041","q042","q043","q044","q045","q046","q047","q048","q049","q050","q051","q052","q053","q054","q055","q056","q057","q058","q059","q132","q133","q134","q135","q136"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 0, "timeslot" : 1},{ "day" : 0, "timeslot" : 2},{ "day" : 0, "timeslot" : 3},{ "day" : 1, "timeslot" : 0},{ "day" : 1, "timeslot" : 1},{ "day" : 1, "timeslot" : 2},{ "day" : 1, "timeslot" : 3},{ "day" : 2, "timeslot" : 0},{ "day" : 2, "timeslot" : 1},{ "day" : 2, "timeslot" : 2},{ "day" : 2, "timeslot" : 3},{ "day" : 3, "timeslot" : 0},{ "day" : 3, "timeslot" : 1},{ "day" : 3, "timeslot" : 2},{ "day" : 3, "timeslot" : 3},{ "day" : 3, "timeslot" : 4},{ "day" : 3, "timeslot" : 5},{ "day" : 4, "timeslot" : 0},{ "day" : 4, "timeslot" : 1},{ "day" : 4, "timeslot" : 2},{ "day" : 4, "timeslot" : 3},{ "day" : 4, "timeslot" : 4},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}, 
+"BibgraCS" : {
+ "teacher" : "t046",
+ "lectures" : 3,
+ "min_working days" : 3,
+ "students" : 60,
+ "possible_rooms" : ["10","L","M","B","A"],
+ "curricula:" : ["q105","q106","q110","q111","q112"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 0, "timeslot" : 1},{ "day" : 0, "timeslot" : 2},{ "day" : 0, "timeslot" : 3},{ "day" : 1, "timeslot" : 0},{ "day" : 1, "timeslot" : 1},{ "day" : 1, "timeslot" : 2},{ "day" : 1, "timeslot" : 3},{ "day" : 2, "timeslot" : 0},{ "day" : 2, "timeslot" : 1},{ "day" : 2, "timeslot" : 2},{ "day" : 2, "timeslot" : 3},{ "day" : 3, "timeslot" : 0},{ "day" : 3, "timeslot" : 1},{ "day" : 3, "timeslot" : 2},{ "day" : 3, "timeslot" : 3},{ "day" : 3, "timeslot" : 4},{ "day" : 3, "timeslot" : 5},{ "day" : 4, "timeslot" : 0},{ "day" : 4, "timeslot" : 1},{ "day" : 4, "timeslot" : 2},{ "day" : 4, "timeslot" : 3},{ "day" : 4, "timeslot" : 4},{ "day" : 4, "timeslot" : 5},{ "day" : 5, "timeslot" : 0},{ "day" : 5, "timeslot" : 1},{ "day" : 5, "timeslot" : 2},{ "day" : 5, "timeslot" : 3},{ "day" : 5, "timeslot" : 4},{ "day" : 5, "timeslot" : 5}]
+}
+}

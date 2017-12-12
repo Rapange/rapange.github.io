@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        .links line {
+            stroke: #000;
+            stroke-opacity: 0.6;
+        }
+        </style>
+        <script type = "text/javascript" src="d3.js"></script>
+        
+    </head>
+    <body>
+        
+        <div>
+            <lable id='teacherLable' for='teacherField'>Type in a teacher:</lable>
+            <input id='teacherField' type='text'>
+            <button id='subButton' type='submit' onclick='getTeacher();'>Submit</button>
+        </div>
+        
+        <script>
+        
+        
+        
+        function zoomed(){
+                d3.select(this).select("g").attr("transform",d3.event.transform);
+                d3.select(this).select("g.links").attr("transform",d3.event.transform);    
+
+            }
+            
+        function buildLinkTeacher(teacher,my_courses){
+            valid_courses = [];
+            my_links = [];
+            for(key in my_courses){
+                //console.log(my_courses[key].teacher);
+                //console.log(teacher);
+                if(my_courses[key].teacher == teacher){
+                    valid_courses.push(my_courses[key].name);
+                }
+            }
+            
+            for(var i = 0; i < valid_courses.length-1; i++){
+                my_links.push({"source" : valid_courses[i], "target" : valid_courses[i+1]});
+            }
+            if(my_links.length == 0){
+                my_links.push({"source" : valid_courses[0], "target" : valid_courses[0]});
+            }
+            
+            return my_links;
+        }
+            
+        var zoom = d3.zoom().scaleExtent([1,10]).on("zoom",zoomed);
+            
+        /*var simulation = d3.forceSimulation()
+        .force("link", d3.forceLink().id("hola"))
+        .force("charge", d3.forceManyBody())
+        .force("center", d3.forceCenter(500,1000)); */
+        
+        var svgContainer = d3.select("body").append("svg").attr("width",1000).attr("height", 2000);
+            
+        d3.json("U1.json", function (error,data){
+            var myData = [];
+            var courses = [];
+            var constraints = [];
+            var spec_courses = [];
+            var total_days = data.university.num_days, width = 20, height = 20, total_timeslots = data.university.num_time_slots;
+            var color = d3.scaleOrdinal(d3.schemeCategory10).domain(d3.range(0,9));
+            
+            //console.log(data);
+            alert(total_days);
+            for(key in data){
+                if(key == "courses"){
+                    console.log(data[key]);
+                    /*for(day in data[key].constraints[0]){
+                        console.log(data[key].constraints[0][day]);
+                    }*/
+                    for(var course in data[key]){
+                        courses.push(data[key][course]);
+                        constraints.push(data[key][course].constraints);
+                    }
+                    
+                    
+                }
+                
+            }
+            
+            /*simulation
+                .nodes(courses)
+                .on("tick",ticked);*/
+            
+            var courses_svg = svgContainer.append("g").call(zoom);
+            
+            var courses_svg_zoom = courses_svg.append("rect")
+            .attr("x",0)
+            .attr("y",0)
+            .attr("width",1000)
+            .attr("height",2000)
+            .attr("fill","white");
+            
+            var my_links = buildLinkTeacher("t003", courses);
+            console.log(my_links);
+            
+            /*simulation
+                .force("link")
+                .link(my_links);*/
+            
+            /*var simulation = d3.forceSimulation()
+            .node(courses)
+            .link(my_links);*/
+            
+            var link_force = d3.forceLink(my_links).id(function(d){return d.name;});
+            
+            var simulation = d3.forceSimulation()
+                .nodes(courses);
+            
+            simulation
+                .force("charge_force", d3.forceManyBody().strength(-50))
+                .force("center_force", d3.forceCenter(500,1000))
+                .force("links",link_force.strength(0));
+            
+            simulation.on("tick", ticked);
+            
+            
+            
+            var my_course_group = courses_svg.append("g");
+            
+            var my_course_link_container = courses_svg.append("g");
+            
+            var my_course_link = my_course_link_container
+            .attr("class","links")
+            .selectAll("line")
+            .data(my_links).enter()
+            .append("line")
+            .attr("stroke-width", 2)
+            .attr("stroke","black");
+            
+            var my_course = my_course_group.selectAll("g")
+            .data(courses)
+            .enter()
+            .append("g")
+            .on("mouseover",function(d){
+            console.log(d.name);})
+            .call(d3.drag()
+                  //.subject(Object)
+                  //.subject(dragSubject)
+                  .on("start",dragStarted)
+                  .on("drag",dragged)
+                  .on("end",dragEnd));
+            
+            
+            
+            var my_course_rectangle = my_course.append("rect")
+            /*.attr("x",function(d,i){
+                return 100;
+            })*/
+            //.attr("y",function(d,i){return (i+1)*25;})
+            .attr("width",function(d){return d.students + width;})
+            .attr("height",function(d){return d.students + height;})
+            .attr("fill",function(d){
+                var index = d.min_working_days;
+                console.log(d);
+                return color(index);})
+            .attr("stroke","black")
+            .attr("stroke-width",2)
+            .attr("id",function(d,i){ return i; });
+            
+            var my_course_all = my_course.append("g");
+            
+            for(var day = 0; day < total_days; day++){
+                var my_course_day = my_course_all.append("rect")
+                .attr("x", function(d){return day * (width + d.students) / (total_days);})
+                //.attr("y",function(d,i){return (i+1)*25;})
+                .attr("width",function(d){return (width + d.students)/total_days;})
+                .attr("height",function(d){return height + d.students;}).attr("fill","none").attr("stroke","black").attr("stroke-width",2)
+                .attr("id",day);
+                //var my_course_timeslot = my_course_all.append
+            }
+            
+            var my_course_timeslot = my_course_all.selectAll("g")
+            .data(function(d,i){return d.constraints;})
+            .enter()
+            .append("g");
+            
+            var my_course_timeslot_i = my_course_timeslot.append("rect")
+            .attr("x",function(d){
+                var students = d3.select(this).node().parentNode.parentNode.__data__.students;
+                return d.day * (width + students) / total_days;
+                })
+            .attr("y",function(d){
+                //Get parent's data id
+                //i = my_course.data().indexOf(d3.select(this).node().parentNode.parentNode.__data__);
+                var students = d3.select(this).node().parentNode.parentNode.__data__.students;
+                return d.timeslot * (height + students) / total_timeslots;// + (i+1)*25;
+            })
+            .attr("width", function(d){
+                var students = d3.select(this).node().parentNode.parentNode.__data__.students;
+                return (width + students)/total_days;
+            })
+            .attr("height",function(d){
+                var students = d3.select(this).node().parentNode.parentNode.__data__.students;
+                return (height + students)/total_timeslots;
+            })
+            .attr("stroke","black")
+            .attr("stroke-width",1)
+            .attr("fill","red");
+            
+            /*function dragSubject(d){
+                return simulation.find(d3.event.x, d3.event.y);
+            }*/
+            
+            function dragStarted(d){
+                if(!d3.event.active) simulation.alphaTarget(0.3).restart();
+                //d3.event.sourceEvent.stopPropagation();
+                
+                /*d.fx = d.x;
+                d.fy = d.y;*/
+                /*console.log(d.x);
+                d3.select(this).attr("transform","translate("+d.x+","+d.y+")");*/
+            }
+            
+            function dragged(d){
+                
+                d3.select(this).attr("transform","translate("+ d3.event.x+","+d3.event.y+")");
+                d.x = d3.event.x;
+                d.y = d3.event.y;
+            }
+            
+            function dragEnd(d){
+                if(!d3.event.active) simulation.alphaTarget(0);
+            }
+            
+            console.log(my_course.node());
+            console.log(my_course.node().hasAttributes());
+            
+            function ticked(){
+                my_course_link
+                    .attr("x1",function(d){return d.source.x+width/2;})
+                    .attr("y1",function(d){return d.source.y+height/2;})
+                    .attr("x2",function(d){return d.target.x+width/2;})
+                    .attr("y2",function(d){return d.target.y+height/2;});
+                /*my_course_rectangle
+                    .attr("x",function(d){return d.x = d.x;})
+                    .attr("y",function(d){return d.y = d.y;});*/
+                
+                my_course.attr("transform", function(d){return "translate("+d.x+","+d.y+")";});
+                
+                /*d3.select(my_course_all._groups[0][4])
+                    .attr("x",function(d){return d.x;})
+                    .attr("y",function(d){return d.y;});*/
+                //console.log(my_course_all.selectAll("rect"));
+                //console.log(d3.select(my_course_all._groups[0][2]));
+            }
+            
+            function getTeacher(){
+                var teacher = document.getElementById('teacherField').value;
+                my_links = buildLinkTeacher(teacher, courses);
+                my_course_link.data(my_links).enter();
+            }
+            
+            //var my_course_timeslot_line = my_course_timeslot.append("rect").attr("x",function(d){console.log(d);return 4;});
+            //console.log(my_course.data());
+            
+ 
+            /*var courses_svg = svgContainer.append("g");
+            var my_course = courses_svg.selectAll("rect").data(courses).enter().append("rect");
+            var my_course_attr = my_course.attr("x",function(d,i){return 100;}).attr("y",function(d,i){return (i+1)*25;}).attr("width",width).attr("height",height).attr("fill","none").attr("stroke","black").attr("stroke-width",2);
+            
+            var courses_rest_svg = svgContainer.append("g");
+            var my_course_rest = courses_rest_svg.selectAll("day ").data(courses).enter();
+            
+            //Painting blocks
+            for(var j = 0; j < total_days; j++){
+                var my_course_restr = my_course_rest.append("rect").attr("x",j*width/(total_days*1.0)+100).attr("y",function(d,i){return (i+1)*25}).attr("width",width/(total_days*1.0)).attr("height",height).attr("fill",function(d){for(key in d.constraints){
+                    if(d.constraints[key].day == j) return "none";
+                }
+            return "none";
+                }).attr("stroke","black").attr("stroke-width",2);
+            
+                
+            }
+            
+            var courses_ts_rest_svg = svgContainer.append("g");
+            var my_course_ts_rest = courses_ts_rest_svg;//.selectAll("rect");
+            for(var j = 0; j < courses.length; j++){
+                for(var constraint in courses[j].constraints){
+                    //console.log(courses[j].constraints[constraint].day);
+                    var my_course_ts_restr = my_course_ts_rest.append("rect").attr("x",courses[j].constraints[constraint].day*width/(total_days*1.0)+100).attr("y",(j+1)*25+courses[j].constraints[constraint].timeslot*height/(total_timeslots*1.0)).attr("width", width/(total_days*1.0)).attr("height",height/(total_timeslots*1.0)).attr("fill","red").attr("stroke","black").attr("stroke-width",2);
+                    
+                }
+            }
+            
+            var text = courses_svg.selectAll("text").data(courses).enter().append("text");
+           
+            var text_labels = text.attr("x",0).attr("y",function(d,i){return (i+1)*25+height*3/4;}).attr("font-family","arial").attr("font-size","15px").attr("fill","black").text(function(d){return d.name;});*/
+        });
+
+        //var circleRadii = [40, 20, 10];
+        /*var circleRadii = [{"cx":40, "cy":40, "r":10, "color":"green"},
+                           {"cx":20, "cy":20, "r":10, "color":"purple"},
+                           {"cx":10, "cy":10, "r":10, "color":"red"}];
+        var points = [{"x":10, "y":10}, {"x":30, "y":100}, {"x":100, "y":100}  
+        ]
+        
+        var new_points = [0,100,200,300,400,500,600,700,800,900,1000];
+            
+        var max_data_point = d3.max(new_points), min_data_point = d3.min(new_points);
+
+        var linear_scale = d3.scaleLinear().domain([min_data_point,max_data_point]).range([0,100]);
+
+        var axis_scale = d3.scaleLinear().domain([0,100]).range([0,200]);    
+
+        for(var i = 0; i < new_points.length; i++)
+        {
+            new_points[i] = linear_scale(new_points[i]);
+        }
+
+        var max_x =0, max_y = 0;
+           
+            
+        for(var i = 0; i < points.lengh;i++)
+        {
+            if(points[i].x > max_x) max_x = points[i].x;
+            if(points[i].y > max_y) max_y = points[i].y;
+        }
+
+        
+        
+        var xAxis = d3.axisBottom().scale(axis_scale);
+            
+        var xAxisGroup = svgContainer.append("g").call(xAxis);
+            
+        var circle_group = svgContainer.append("g").attr("transform","translate(10,10)");
+            
+        var circles = circle_group.selectAll("circle").data(circleRadii).enter().append("circle");
+        
+        var circleAttributes = circles.attr("cx",function(d){return d.cx;}).attr("cy",function(d){return d.cy;}).attr("r", function(d){return d.r}).style("fill",dColor);
+            
+            var rectangle = svgContainer.append("rect").attr("x", 100).attr("y",100).attr("width",50).attr("height",100).style("fill","blue");
+            
+            var my_path = svgContainer.append("path").attr("d",
+                                                           "M 10 25 L 10 75 L 60 75 L 10 25").attr("stroke","red").attr("stroke-width","2").attr("fill","none");
+                                                           
+             var line_function = d3.line().curve(d3.curveCardinal).x(function(d){return d.x;}).y(function(d){return d.y;});                                              
+            var line_graph = svgContainer.append("path").attr("d",line_function(points)).attr("stroke","green").attr("stroke-width",2).attr("fill","none");
+                                     
+            var text = circle_group.selectAll("text").data(new_points).enter().append("text");
+            
+            var text_labels = text.attr("x",function(d){return d;}).attr("y",function(d){return d;}).attr("font-family", "sans-serif").attr("font-size","10px").attr("fill","black").text(function(d){return d.toString();});
+            
+            function dColor(d){
+                return d.color;
+            }*/
+        </script>
+    </body>
+</html>

@@ -1,0 +1,336 @@
+{
+ "university" : { "name" : "Fis0506-1",
+ "num_courses" : 30,
+ "num_rooms" : 6,
+ "num_days" : 5,
+ "num_time_slots" : 6
+},
+ "courses" : [
+{
+"name" : "c0001",
+ "teacher" : "t000",
+ "lectures" : 6,
+ "min_working_days" : 4,
+ "students" : 130,
+ "possible_rooms" : ["B"],
+ "curricula" : ["q000","q002"],
+ "constraints" : [{ "day" : 4, "timeslot" : 0},{ "day" : 4, "timeslot" : 1},{ "day" : 4, "timeslot" : 2},{ "day" : 4, "timeslot" : 3},{ "day" : 4, "timeslot" : 4},{ "day" : 4, "timeslot" : 5}]
+}, 
+{
+"name" : "c0002",
+ "teacher" : "t001",
+ "lectures" : 6,
+ "min_working_days" : 4,
+ "students" : 75,
+ "possible_rooms" : ["B","C"],
+ "curricula" : ["q000"],
+ "constraints" : []
+}, 
+{
+"name" : "c0004",
+ "teacher" : "t002",
+ "lectures" : 7,
+ "min_working_days" : 3,
+ "students" : 117,
+ "possible_rooms" : ["B"],
+ "curricula" : ["q000","q012"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 0, "timeslot" : 1},{ "day" : 0, "timeslot" : 2},{ "day" : 0, "timeslot" : 3},{ "day" : 0, "timeslot" : 4},{ "day" : 0, "timeslot" : 5}]
+}, 
+{
+"name" : "c0005",
+ "teacher" : "t003",
+ "lectures" : 3,
+ "min_working_days" : 3,
+ "students" : 75,
+ "possible_rooms" : ["B","C"],
+ "curricula" : ["q000"],
+ "constraints" : []
+}, 
+{
+"name" : "c0014",
+ "teacher" : "t004",
+ "lectures" : 1,
+ "min_working_days" : 1,
+ "students" : 65,
+ "possible_rooms" : ["B","C"],
+ "curricula" : ["q001"],
+ "constraints" : []
+}, 
+{
+"name" : "c0015",
+ "teacher" : "t005",
+ "lectures" : 8,
+ "min_working_days" : 3,
+ "students" : 65,
+ "possible_rooms" : ["B","C"],
+ "curricula" : ["q001"],
+ "constraints" : []
+}, 
+{
+"name" : "c0016",
+ "teacher" : "t006",
+ "lectures" : 7,
+ "min_working_days" : 3,
+ "students" : 65,
+ "possible_rooms" : ["B","C"],
+ "curricula" : ["q001"],
+ "constraints" : []
+}, 
+{
+"name" : "c0017",
+ "teacher" : "t007",
+ "lectures" : 2,
+ "min_working_days" : 2,
+ "students" : 65,
+ "possible_rooms" : ["B","C"],
+ "curricula" : ["q001"],
+ "constraints" : []
+}, 
+{
+"name" : "c0024",
+ "teacher" : "t008",
+ "lectures" : 4,
+ "min_working_days" : 3,
+ "students" : 55,
+ "possible_rooms" : ["B","C"],
+ "curricula" : ["q002"],
+ "constraints" : [{ "day" : 3, "timeslot" : 0},{ "day" : 3, "timeslot" : 1},{ "day" : 3, "timeslot" : 2},{ "day" : 3, "timeslot" : 3},{ "day" : 3, "timeslot" : 4},{ "day" : 3, "timeslot" : 5}]
+}, 
+{
+"name" : "c0025",
+ "teacher" : "t009",
+ "lectures" : 8,
+ "min_working_days" : 3,
+ "students" : 55,
+ "possible_rooms" : ["B","C"],
+ "curricula" : ["q002"],
+ "constraints" : [{ "day" : 2, "timeslot" : 2},{ "day" : 2, "timeslot" : 3},{ "day" : 2, "timeslot" : 4},{ "day" : 2, "timeslot" : 5},{ "day" : 3, "timeslot" : 0},{ "day" : 3, "timeslot" : 1},{ "day" : 3, "timeslot" : 2},{ "day" : 3, "timeslot" : 3},{ "day" : 3, "timeslot" : 4},{ "day" : 3, "timeslot" : 5}]
+}, 
+{
+"name" : "c0078",
+ "teacher" : "t010",
+ "lectures" : 5,
+ "min_working_days" : 4,
+ "students" : 55,
+ "possible_rooms" : ["B","C"],
+ "curricula" : ["q002"],
+ "constraints" : []
+}, 
+{
+"name" : "c0030",
+ "teacher" : "t011",
+ "lectures" : 5,
+ "min_working_days" : 4,
+ "students" : 20,
+ "possible_rooms" : ["B","C","F","G","S"],
+ "curricula" : ["q003"],
+ "constraints" : []
+}, 
+{
+"name" : "c0031",
+ "teacher" : "t012",
+ "lectures" : 5,
+ "min_working_days" : 4,
+ "students" : 11,
+ "possible_rooms" : ["B","C","F","G","S"],
+ "curricula" : ["q004"],
+ "constraints" : []
+}, 
+{
+"name" : "c0032",
+ "teacher" : "t013",
+ "lectures" : 1,
+ "min_working_days" : 1,
+ "students" : 31,
+ "possible_rooms" : ["B","C"],
+ "curricula" : ["q003","q004"],
+ "constraints" : []
+}, 
+{
+"name" : "c0033",
+ "teacher" : "t014",
+ "lectures" : 6,
+ "min_working_days" : 4,
+ "students" : 31,
+ "possible_rooms" : ["B","C"],
+ "curricula" : ["q003","q004"],
+ "constraints" : [{ "day" : 3, "timeslot" : 2},{ "day" : 3, "timeslot" : 3},{ "day" : 3, "timeslot" : 4},{ "day" : 3, "timeslot" : 5},{ "day" : 4, "timeslot" : 0},{ "day" : 4, "timeslot" : 1},{ "day" : 4, "timeslot" : 2},{ "day" : 4, "timeslot" : 3},{ "day" : 4, "timeslot" : 4},{ "day" : 4, "timeslot" : 5}]
+}, 
+{
+"name" : "c0057",
+ "teacher" : "t015",
+ "lectures" : 5,
+ "min_working_days" : 4,
+ "students" : 2,
+ "possible_rooms" : ["B","C","E","F","G","S"],
+ "curricula" : ["q006"],
+ "constraints" : []
+}, 
+{
+"name" : "c0058",
+ "teacher" : "t016",
+ "lectures" : 5,
+ "min_working_days" : 4,
+ "students" : 2,
+ "possible_rooms" : ["B","C","E","F","G","S"],
+ "curricula" : ["q010"],
+ "constraints" : []
+}, 
+{
+"name" : "c0059",
+ "teacher" : "t017",
+ "lectures" : 6,
+ "min_working_days" : 4,
+ "students" : 7,
+ "possible_rooms" : ["B","C","E","F","G","S"],
+ "curricula" : ["q006","q008"],
+ "constraints" : []
+}, 
+{
+"name" : "c0061",
+ "teacher" : "t018",
+ "lectures" : 6,
+ "min_working_days" : 4,
+ "students" : 6,
+ "possible_rooms" : ["B","C","E","F","G","S"],
+ "curricula" : ["q007"],
+ "constraints" : []
+}, 
+{
+"name" : "c0062",
+ "teacher" : "t019",
+ "lectures" : 5,
+ "min_working_days" : 4,
+ "students" : 10,
+ "possible_rooms" : ["B","C","F","G","S"],
+ "curricula" : ["q007","q013"],
+ "constraints" : []
+}, 
+{
+"name" : "c0063",
+ "teacher" : "t020",
+ "lectures" : 6,
+ "min_working_days" : 4,
+ "students" : 8,
+ "possible_rooms" : ["B","C","E","F","G","S"],
+ "curricula" : ["q009","q010"],
+ "constraints" : []
+}, 
+{
+"name" : "c0064",
+ "teacher" : "t020",
+ "lectures" : 6,
+ "min_working_days" : 4,
+ "students" : 6,
+ "possible_rooms" : ["B","C","E","F","G","S"],
+ "curricula" : ["q009"],
+ "constraints" : []
+}, 
+{
+"name" : "c0065",
+ "teacher" : "t021",
+ "lectures" : 6,
+ "min_working_days" : 4,
+ "students" : 5,
+ "possible_rooms" : ["B","C","E","F","G","S"],
+ "curricula" : ["q008"],
+ "constraints" : []
+}, 
+{
+"name" : "c0066",
+ "teacher" : "t008",
+ "lectures" : 6,
+ "min_working_days" : 4,
+ "students" : 14,
+ "possible_rooms" : ["B","C","F","G","S"],
+ "curricula" : ["q005","q009","q013"],
+ "constraints" : []
+}, 
+{
+"name" : "c0067",
+ "teacher" : "t022",
+ "lectures" : 5,
+ "min_working_days" : 4,
+ "students" : 7,
+ "possible_rooms" : ["B","C","E","F","G","S"],
+ "curricula" : ["q011"],
+ "constraints" : []
+}, 
+{
+"name" : "c0068",
+ "teacher" : "t023",
+ "lectures" : 6,
+ "min_working_days" : 4,
+ "students" : 9,
+ "possible_rooms" : ["B","C","E","F","G","S"],
+ "curricula" : ["q010","q011"],
+ "constraints" : []
+}, 
+{
+"name" : "c0069",
+ "teacher" : "t007",
+ "lectures" : 6,
+ "min_working_days" : 4,
+ "students" : 7,
+ "possible_rooms" : ["B","C","E","F","G","S"],
+ "curricula" : ["q011"],
+ "constraints" : []
+}, 
+{
+"name" : "c0070",
+ "teacher" : "t002",
+ "lectures" : 6,
+ "min_working_days" : 4,
+ "students" : 4,
+ "possible_rooms" : ["B","C","E","F","G","S"],
+ "curricula" : ["q005"],
+ "constraints" : []
+}, 
+{
+"name" : "c0071",
+ "teacher" : "t001",
+ "lectures" : 6,
+ "min_working_days" : 4,
+ "students" : 10,
+ "possible_rooms" : ["B","C","F","G","S"],
+ "curricula" : ["q009","q013"],
+ "constraints" : [{ "day" : 0, "timeslot" : 0},{ "day" : 0, "timeslot" : 1},{ "day" : 0, "timeslot" : 2},{ "day" : 1, "timeslot" : 0},{ "day" : 1, "timeslot" : 1},{ "day" : 1, "timeslot" : 2},{ "day" : 2, "timeslot" : 0},{ "day" : 2, "timeslot" : 1},{ "day" : 2, "timeslot" : 2},{ "day" : 3, "timeslot" : 0},{ "day" : 3, "timeslot" : 1},{ "day" : 3, "timeslot" : 2},{ "day" : 4, "timeslot" : 0},{ "day" : 4, "timeslot" : 1},{ "day" : 4, "timeslot" : 2}]
+}, 
+{
+"name" : "c0072",
+ "teacher" : "t003",
+ "lectures" : 6,
+ "min_working_days" : 4,
+ "students" : 9,
+ "possible_rooms" : ["B","C","E","F","G","S"],
+ "curricula" : ["q005","q008"],
+ "constraints" : []
+}
+],
+"rooms" : [
+{
+ "name" : "B",
+ "capacity" : "200"
+},
+{
+ "name" : "C",
+ "capacity" : "100"
+},
+{
+ "name" : "E",
+ "capacity" : "9"
+},
+{
+ "name" : "F",
+ "capacity" : "30"
+},
+{
+ "name" : "G",
+ "capacity" : "20"
+},
+{
+ "name" : "S",
+ "capacity" : "30"
+}
+]
+}
