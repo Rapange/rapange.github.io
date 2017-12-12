@@ -54,6 +54,7 @@
                 <button id='buttonid' type='submit'>Execute</button>
             <button id='readRes' type='submit'> Read </button>
                 
+				<div id="Results"></div>
             </div>
 
         </div>
@@ -183,7 +184,8 @@
 
         var testing = svgContainer_2.append("circle").attr("cx",50).attr("cy",50).attr("r",10);
         var opti_svg = d3.select("#Optimization").append("svg").attr("width",opti_width).attr("height",opti_height);
-
+		
+		
         var testing2 = opti_svg.append("circle").attr("cx",50).attr("cy",50).attr("r",10);
             
 		/*var input_text = d3.select("#Information").html("Type in a teacher: ").append("input").attr("type","text").attr("name","teacher_val");
@@ -217,16 +219,19 @@
                 var c_cont = 0;
                 for(var c_i in c_data){
                     console.log(c_data[c_i]);
-                    if(c_i == "results"){
+                    if(c_i == "score"){
                         console.log("Hard: ", c_data[c_i].hard_score);
                         console.log("Soft: ", c_data[c_i].soft_score);
-                        /*d3.select("#Optimization").select("#result").append("text")
-                            .attr("x",10)
-                            .attr("y",10)
+                        d3.select("#my_result").remove();
+						svgContainer_2.append("text")
+							.attr("id","my_result")
+                            .attr("x",20)
+                            .attr("y",150)
+							.text("score: " + (c_data[c_i].hard_score + c_data[c_i].soft_score).toString())
                             .attr("font-size", "20px")
-                            .attr("fill", "black")
-                            .text(c_data[c_i].hard_score + c_data[c_i].soft_score);
-                        break;*/
+                            .attr("fill", "black");
+                            
+                        break;
                     }
                     for(c_j in c_data[c_i]){
                         console.log(c_data[c_i][c_j]);
@@ -241,7 +246,7 @@
                     
                     
                 }
-				course_positions.pop(); course_positions.pop();
+				//course_positions.pop(); course_positions.pop();
 				console.log(course_positions);
                 console.log(c_converted);
                 return c_converted;
